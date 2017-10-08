@@ -7,36 +7,26 @@ import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.our_company.iqiyi.Net.Data;
-import com.our_company.iqiyi.Player.view.ControlView;
 import com.our_company.iqiyi.R;
-import com.our_company.iqiyi.Remote.MasterSendCmdThread;
-import com.our_company.iqiyi.Remote.MasterThread;
 import com.our_company.iqiyi.Remote.RemoteInfo;
 import com.our_company.iqiyi.Remote.RemoteUtil;
-import com.qiyi.video.playcore.QiyiVideoView;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 
-import xiyou.mobile.User;
+import cn.jzvd.JZVideoPlayer;
 
 import static android.content.res.Configuration.ORIENTATION_LANDSCAPE;
 
 public class VideoActivity extends AppCompatActivity {
 
-    private ControlView cv;
-    private QiyiVideoView qv;
+    private MPlayer qv;
     private Button send,get;
-    private String playSouce="667737400",title;
+    private String playSouce="http://i.snssdk.com/neihan/video/playback/?video_id=361b1c3b0c8642a5a1f77c0eb5acf08e&quality=480p&line=0&is_gif=0.mp4",title;
     private boolean synced=false;
     private Data data;
 
@@ -45,7 +35,7 @@ public class VideoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.playlayout);
         ShareService.activityContext=this;
-//        startService(new Intent(this,ShareService.class));
+        startService(new Intent(this,ShareService.class));
         data=(Data)getIntent().getSerializableExtra("data");
         if(RemoteUtil.socketClient!=null)
         {
@@ -70,10 +60,9 @@ public class VideoActivity extends AppCompatActivity {
                 }.start();
             }
         }
-        playSouce=data.getTv_id();
+        //playSouce=data.getTv_id();
 
-        cv=(ControlView)findViewById(R.id.controler);
-        qv=(QiyiVideoView)findViewById(R.id.player);
+        qv=(MPlayer)findViewById(R.id.player);
         /*int w=((WindowManager)getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getWidth();
         int h=w*9/16;
         if (w>((WindowManager)getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getHeight())
@@ -81,12 +70,11 @@ public class VideoActivity extends AppCompatActivity {
 
         qv.setLayoutParams(new RelativeLayout.LayoutParams(w,h));
         cv.setLayoutParams(new RelativeLayout.LayoutParams(w,h));*/
-        cv.setQiyi(qv);
-        //cv.setSource(playSouce);
-        title=data.getTitle();
-        if (data!=null)
-        cv.setTitle(data.getTitle());
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        qv.setSource(data.getPlayUrlHigh());
+        //qv.startWindowFullscreen();
+        //title=data.getTitle();
+        //if (data!=null)
+        //(data.getTitle());
 
         //
     }
@@ -98,7 +86,7 @@ public class VideoActivity extends AppCompatActivity {
             int sw=getIntent().getIntExtra("width",w);
             int sh=getIntent().getIntExtra("height",h);
             Log.e("xx","sizeset"+sw+":"+sh);
-            cv.enableSync(w,h,sw,sh,getIntent().getStringExtra("name"),true);
+            qv.enableSync(w,h,sw,sh,getIntent().getStringExtra("name"),true);
         }
     }
 
@@ -106,32 +94,33 @@ public class VideoActivity extends AppCompatActivity {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        cv.saveSeek();
-        setContentView(R.layout.playlayout);
+        qv=(MPlayer)findViewById(R.id.player);
+        qv.setSource(data.getPlayUrlHigh());
 
-        cv=(ControlView)findViewById(R.id.controler);
-        qv=(QiyiVideoView)findViewById(R.id.player);
+//        setContentView(R.layout.playlayout);
+//
+//        qv=(MPlayer)findViewById(R.id.player);
         int w=((WindowManager)getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getWidth();
         int h=w*9/16;
-
+//
         if (newConfig.orientation==ORIENTATION_LANDSCAPE) {
             h = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getHeight();
         }
-
-        cv.switchScreen(newConfig.orientation==ORIENTATION_LANDSCAPE);
-        qv.setLayoutParams(new RelativeLayout.LayoutParams(w,h));
-        cv.setLayoutParams(new RelativeLayout.LayoutParams(w,h));
+//
+//        cv.switchScreen(newConfig.orientation==ORIENTATION_LANDSCAPE);
+//        qv.setLayoutParams(new RelativeLayout.LayoutParams(w,h));
+//        cv.setLayoutParams(new RelativeLayout.LayoutParams(w,h));
         if (newConfig.orientation==ORIENTATION_LANDSCAPE)
             solveIntent(w,h);
-        cv.setQiyi(qv);
-        cv.setSource(playSouce);
-        cv.setTitle(title);
+//        cv.setQiyi(qv);
+//        cv.setSource(playSouce);
+//        cv.setTitle(title);
 
     }
 
     @Override
     protected void onDestroy() {
-        cv.quitSync();
+        qv.quitSync();
         super.onDestroy();
         if(RemoteUtil.socketClient!=null)
         {
@@ -157,12 +146,27 @@ public class VideoActivity extends AppCompatActivity {
 
             }
         }
-        qv.release();
+        //qv.release();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (JZVideoPlayer.backPress()) {
+            //return;
+        }
+        super.onBackPressed();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        JZVideoPlayer.releaseAllVideos();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         ShareService.activityContext=this;
         RemoteUtil.clientWindow=getWindow();
     }

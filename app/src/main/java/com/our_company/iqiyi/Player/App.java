@@ -5,9 +5,10 @@ import android.content.Intent;
 
 import com.our_company.iqiyi.R;
 import com.our_company.iqiyi.bean.ThemeInfo;
-import com.qiyi.video.playcore.QiyiVideoView;
 
 import java.util.Random;
+
+import xiyou.mobile.User;
 
 /**
  * Created by user on 2017/6/1.
@@ -18,7 +19,6 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        QiyiVideoView.init(this);
 
         startService(new Intent(this,ShareService.class));
         int []colorId={R.color.redPrimary,R.color.redPrimaryDark,

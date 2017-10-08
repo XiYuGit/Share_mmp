@@ -45,6 +45,7 @@
         <activity android:name=".Personal.MyContent.ReducePaper"></activity>
         <activity android:name=".Personal.MyContent.MySold"></activity>
         <activity android:name=".Remote.MasterActivity"
+            android:screenOrientation="landscape"
             android:configChanges="orientation|screenSize">
 
         </activity>

@@ -16,17 +16,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.our_company.iqiyi.Player.view.ControlView;
 import com.our_company.iqiyi.R;
 
 import java.util.ArrayList;
-import java.util.logging.Handler;
 
 import xiyou.mobile.User;
 
@@ -36,7 +33,7 @@ import xiyou.mobile.User;
 
 public class MDialog extends Dialog {
 
-    private ControlView cv;
+    private MPlayer cv;
     private ViewPager vp;
     private TextView title1,title2;
     private static User.OnPermitSyncListener syncl=null;
@@ -46,7 +43,7 @@ public class MDialog extends Dialog {
 
     private H mh=new H();
 
-    public MDialog(Context context, ControlView v) {
+    public MDialog(Context context, MPlayer v) {
         super(context, R.style.MDialog);
         this.cv=v;
         WindowManager.LayoutParams lp=getWindow().getAttributes();

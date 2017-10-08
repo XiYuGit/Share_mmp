@@ -75,6 +75,7 @@ public class ShareService extends Service {
         {
             @Override
             public void run() {
+                interrupt();
                 //User.login("test1","test1");
                 removeListeners();
                 User.get().addOnRequestSyncListener(requestSyncListener=new User.OnRequestSyncListener() {
@@ -176,7 +177,9 @@ public class ShareService extends Service {
                     break;
                 case STARTACTIVITY:
                     i.putExtra("name",name);
-                    i.putExtra("data",new Data("","","","",data));
+                    Data d=new Data("","","","",data);
+                    d.setPlayUrlHigh(data);
+                    i.putExtra("data",d);
                     i.putExtra("width",w);
                     i.putExtra("height",h);
                     setdata=setsize=false;
