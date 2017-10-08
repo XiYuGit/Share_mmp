@@ -70,7 +70,8 @@ public class VideoActivity extends AppCompatActivity {
 
         qv.setLayoutParams(new RelativeLayout.LayoutParams(w,h));
         cv.setLayoutParams(new RelativeLayout.LayoutParams(w,h));*/
-        qv.setSource(data.getPlayUrlHigh());
+        qv.setSource(data.getPlayUrlLow());
+        qv.switchScreen(true);
         //qv.startWindowFullscreen();
         //title=data.getTitle();
         //if (data!=null)

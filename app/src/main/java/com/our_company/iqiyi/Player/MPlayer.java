@@ -144,7 +144,7 @@ public class MPlayer extends JZVideoPlayerStandard implements Runnable{
         while(running)
         {
             try {
-                Thread.sleep(500);
+                Thread.sleep(3000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -208,7 +208,7 @@ public class MPlayer extends JZVideoPlayerStandard implements Runnable{
                     mdialog.show();
                 break;
             case R.id.play_draw:
-                //draw.setVisibility(View.VISIBLE);
+                draw.setVisibility(View.VISIBLE);
                 draw_cancel.setVisibility(VISIBLE);
                 draw_ok.setVisibility(VISIBLE);
                 break;
@@ -229,7 +229,7 @@ public class MPlayer extends JZVideoPlayerStandard implements Runnable{
         if (seeking)
         {
 
-            mh.sendEmptyMessage(H.STARTPAUSE);
+            //mh.sendEmptyMessage(H.STARTPAUSE);
             shouldStart=true;
         }
 
@@ -266,6 +266,7 @@ public class MPlayer extends JZVideoPlayerStandard implements Runnable{
 
         Log.e("xx","enable sync");
         MDialog.dismissWait();
+        startSync=true;
         this.w=w;
         this.h=h;
         ended=false;
@@ -314,12 +315,18 @@ public class MPlayer extends JZVideoPlayerStandard implements Runnable{
 
         User.get().addOnSeekListener(seekl=new User.OnSeekListener() {
             @Override
-            public void onSeek(int position, String name) {
-                if (Math.abs(position-getCurrentPositionWhenPlaying())>500)
-                {
-                    JZMediaManager.instance().mediaPlayer.seekTo(position);
+            public void onSeek(final int position, String name) {
+
+                    post(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (Math.abs(position-getCurrentPositionWhenPlaying())>3000)
+                        {
+                            JZMediaManager.instance().mediaPlayer.seekTo(position);
+                        }
+                        }
+                    });
                 }
-            }
         });
         if (spl!=null)
             User.get().removeOnStartPauseListener(spl);
@@ -336,7 +343,7 @@ public class MPlayer extends JZVideoPlayerStandard implements Runnable{
                         @Override
                         public void run() {
                             super.run();
-                            User.get().startpause(MPlayer.this.name);
+                            //User.get().startpause(MPlayer.this.name);
                         }
                     }.start();
                 }
