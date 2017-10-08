@@ -88,6 +88,8 @@ public class MPlayer extends JZVideoPlayerStandard implements Runnable{
         this.c = context;
         LayoutInflater lf = LayoutInflater.from(c);
         draw = lf.inflate(R.layout.drawlayout, null);
+        addView(draw);
+        draw.setVisibility(View.GONE);
         dv = (DrawView) draw.findViewById(R.id.draw);
 
         draw_cancel = (ImageButton) draw.findViewById(R.id.draw_cancel);
@@ -154,7 +156,15 @@ public class MPlayer extends JZVideoPlayerStandard implements Runnable{
                 if (startSync)
                     if (!synced)
                         if (name!=null)
-                            User.get().syncSeek(getCurrentPositionWhenPlaying(),name);
+                        {
+                            post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    User.get().syncSeek(getCurrentPositionWhenPlaying(),name);
+                                }
+                            });
+                        }
+
             }
         }
     }
@@ -191,9 +201,10 @@ public class MPlayer extends JZVideoPlayerStandard implements Runnable{
                 }.start();
                 break;
             case R.id.draw_ok:
-                //draw.setVisibility(View.GONE);
+                draw.setVisibility(View.GONE);
                 draw_cancel.setVisibility(View.GONE);
                 draw_ok.setVisibility(View.GONE);
+                //play_more.setVisibility(View.VISIBLE);
                 break;
             case R.id.draw_more:
                 break;
@@ -209,6 +220,7 @@ public class MPlayer extends JZVideoPlayerStandard implements Runnable{
                 break;
             case R.id.play_draw:
                 draw.setVisibility(View.VISIBLE);
+                play_more.setVisibility(View.GONE);
                 draw_cancel.setVisibility(VISIBLE);
                 draw_ok.setVisibility(VISIBLE);
                 break;
@@ -285,7 +297,7 @@ public class MPlayer extends JZVideoPlayerStandard implements Runnable{
         //mh.sendEmptyMessage(SYNC);
 
         // synced=true;
-        draw.setVisibility(View.VISIBLE);
+        //draw.setVisibility(View.VISIBLE);
         play_more.setVisibility(View.GONE);
         play_draw.setVisibility(View.VISIBLE);
         //play_start.setVisibility(View.GONE);
