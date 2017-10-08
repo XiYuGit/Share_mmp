@@ -204,6 +204,7 @@ public class MPlayer extends JZVideoPlayerStandard implements Runnable{
                 draw.setVisibility(View.GONE);
                 draw_cancel.setVisibility(View.GONE);
                 draw_ok.setVisibility(View.GONE);
+                play_draw.setVisibility(View.VISIBLE);
                 //play_more.setVisibility(View.VISIBLE);
                 break;
             case R.id.draw_more:
@@ -219,6 +220,7 @@ public class MPlayer extends JZVideoPlayerStandard implements Runnable{
                     mdialog.show();
                 break;
             case R.id.play_draw:
+                play_draw.setVisibility(View.GONE);
                 draw.setVisibility(View.VISIBLE);
                 play_more.setVisibility(View.GONE);
                 draw_cancel.setVisibility(VISIBLE);
