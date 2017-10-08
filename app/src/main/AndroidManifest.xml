@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.our_company.iqiyi">
+    <!--网络访问需要的权限-->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!--获取手机IMEI号需要的权限-->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!--获取WI-FI状态以及Mac地址需要的权限-->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!--判断网络连接状态需要-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"></uses-permission>
+    <uses-permission android:name="android.permission.CAMERA"></uses-permission>
+
+
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/share"
+        android:label="@string/app_name"
+       android:name=".Player.App"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        >
+        <activity android:name=".Main"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Personal.My.My_set"></activity>
+        <activity android:name=".Personal.MyContent.Help"></activity>
+        <activity android:name=".Personal.MyContent.MyBuy"></activity>
+        <activity android:name=".Personal.MyContent.MyMoney"></activity>
+        <activity android:name=".Personal.MyContent.MySend"></activity>
+        <activity android:name=".Personal.MyContent.MySave"></activity>
+        <activity android:name=".Activity.About"></activity>
+        <activity android:name=".Personal.MyContent.ReducePaper"></activity>
+        <activity android:name=".Personal.MyContent.MySold"></activity>
+        <activity android:name=".Remote.MasterActivity"
+            android:configChanges="orientation|screenSize">
+
+        </activity>
+        <activity android:name=".Personal.MyContent.SalePaper"></activity>
+        <activity android:name=".Personal.MyContent.MyTalk"></activity>
+        <activity android:name=".Activity.LoginActivity"></activity>
+        <activity android:name=".Activity.RegisterActivity"></activity>
+        <activity android:name=".Activity.Search"/>
+       <activity android:name=".Player.VideoActivity"
+           android:configChanges="orientation|screenSize">
+       </activity>
+
+        <!--好友服务-->
+        <service android:name=".Service.FriendService"></service>
+        <!--远程协助服务-->
+        <service android:name=".Remote.RemoteService"></service>
+       <service android:name=".Player.ShareService"></service>
+    </application>
+
+</manifest>

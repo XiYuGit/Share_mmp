@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="154dp"
+    android:background="#00000000"
+>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/button1"
+        android:text="取消"
+        android:background="#FFF"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:id="@+id/linearLayout1"
+        android:orientation="horizontal"
+        android:layout_above="@id/button1"
+        android:background="#EEE"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_above="@+id/linearLayout1"
+        android:id="@+id/button2"
+        android:background="#FFF"
+        android:text="相册"
+         />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:id="@+id/linearLayout2"
+        android:orientation="horizontal"
+        android:layout_above="@id/button2"
+        android:background="#EEE"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_above="@+id/linearLayout2"
+        android:background="#FFF"
+        android:text="照相机"
+        android:id="@+id/button3"
+
+ />
+</RelativeLayout>

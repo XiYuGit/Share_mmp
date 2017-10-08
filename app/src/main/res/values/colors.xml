@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="white">#FFFFFF</color>
+    <color name="colorTabCheck">#FFFFFF</color>
+    <color name="colorTabUnCheck">#F5F5F5</color>
+    <color name="none">#00000000</color>
+
+    <color name="redPrimary">#F44336</color>
+    <color name="redPrimaryDark">#e53935</color>
+
+    <color name="pinkPrimary">#e91e63</color>
+    <color name="pinkPrimaryDark">#d81b60</color>
+
+    <color name="purplePrimary">#673ab7</color>
+    <color name="purplePrimaryDark">#5e35b1</color>
+
+    <color name="darkBluePrimary">#3F51B5</color>
+    <color name="darkBluePrimaryDark">#303F9F</color>
+
+    <color name="lightBluePrimary">#30a9f4</color>
+    <color name="lightBluePrimaryDark">#039be5</color>
+
+    <color name="cyanPrimary">#00bcd4</color>
+    <color name="cyanPrimaryDark">#00acc1</color>
+
+    <color name="tealPrimary">#009688</color>
+    <color name="tealPrimaryDark">#00897b</color>
+
+    <color name="greenPrimary">#4caf50</color>
+    <color name="greenPrimaryDark">#1b5e20</color>
+
+    <color name="yellowPrimary">#ffeb3b</color>
+    <color name="yellowPrimaryDark">#fdd835</color>
+
+    <color name="orangePrimary">#ff9800</color>
+    <color name="orangePrimaryDark">#fb8c00</color>
+
+    <color name="deepOrangePrimary">#ff5722</color>
+    <color name="deepOrangePrimaryDark">#f4511e</color>
+
+    <color name="brownPrimary">#795548</color>
+    <color name="brownPrimaryDark">#6d4c41</color>
+
+    <color name="greyPrimary">#9e9e9e</color>
+    <color name="greyPrimaryDark">#757575</color>
+
+    <color name="blueGreyPrimary">#607d8b</color>
+    <color name="blueGreyPrimaryDark">#546e7a</color>
+
+    <color name="blackPrimary">#000000</color>
+    <color name="blackPrimaryDark">#000000</color>
+
+    <color name="lightGreenPrimary">#76ff03</color>
+    <color name="lightGreenPrimaryDark">#64dd17</color>
+
+
+</resources>

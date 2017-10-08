@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/linearLayout_menu2_2"
+        android:weightSum="1">
+        <LinearLayout
+            android:layout_width="50dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_height="50dp">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/wodegoumai"
+                android:id="@+id/imageView1"
+
+                />
+        </LinearLayout>
+
+
+        <TextView
+            android:text="远程协助"
+            android:textSize="17dp"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:id="@+id/textView2"
+            android:layout_weight="0.9" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:src="@drawable/right"
+            android:layout_weight="0.1"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/linearLayout_menu2_3"
+        android:weightSum="1">
+        <LinearLayout
+            android:layout_width="50dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_height="50dp">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/wodemaichu"
+                android:id="@+id/imageView1"
+
+                />
+        </LinearLayout>
+
+
+        <TextView
+            android:text="添加好友"
+            android:textSize="17dp"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:id="@+id/textView2"
+            android:layout_weight="0.9" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:src="@drawable/right"
+            android:layout_weight="0.1"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/linearLayout_menu2_4"
+        android:weightSum="1">
+        <LinearLayout
+            android:layout_width="50dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_height="50dp">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/wodepingjia"
+                android:id="@+id/imageView1"
+
+                />
+        </LinearLayout>
+
+
+        <TextView
+            android:text="我的好友"
+            android:textSize="17dp"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:id="@+id/textView2"
+            android:layout_weight="0.9" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:src="@drawable/right"
+            android:layout_weight="0.1"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/linearLayout_menu2_5"
+        android:weightSum="1">
+        <LinearLayout
+            android:layout_width="50dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_height="50dp">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/wodeshoucang"
+                android:id="@+id/imageView1"
+
+                />
+        </LinearLayout>
+
+
+        <TextView
+            android:text="退出系统"
+            android:textSize="17dp"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:id="@+id/logout_text"
+            android:layout_weight="0.9" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:src="@drawable/right"
+            android:layout_weight="0.1"
+            />
+    </LinearLayout>
+
+</LinearLayout>

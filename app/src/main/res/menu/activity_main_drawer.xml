@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="none">
+        <item
+            android:id="@+id/nav_addFriend"
+            android:icon="@drawable/addfriend"
+            android:title="添加好友" />
+        <item
+            android:id="@+id/nav_myFriend"
+            android:icon="@drawable/friend"
+            android:title="我的好友" />
+        <item
+            android:id="@+id/nav_remoteAssistant"
+            android:icon="@drawable/remoteassistant"
+            android:title="远程协助" />
+        <item
+            android:id="@+id/nav_aboutUs"
+            android:icon="@drawable/aboutus"
+            android:title="关于我们" />
+
+    </group>
+
+    <item android:title="系统设置">
+        <menu>
+            <item
+                android:id="@+id/nav_setting"
+                android:icon="@drawable/change_theme"
+                android:title="更换主题" />
+            <item
+                android:id="@+id/nav_quitButton"
+                android:icon="@drawable/wodeqianbao"
+                android:title="退出" />
+        </menu>
+    </item>
+
+</menu>
