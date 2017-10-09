@@ -19,8 +19,10 @@ import android.widget.Toast;
 
 import com.our_company.iqiyi.Player.view.DrawView;
 import com.our_company.iqiyi.R;
+import com.our_company.iqiyi.Remote.Communicate.AGEventHandler;
 import com.our_company.iqiyi.Remote.Communicate.EngineConfig;
 import com.our_company.iqiyi.Remote.Communicate.MyEngineEventHandler;
+import com.our_company.iqiyi.Remote.Communicate.WorkerThread;
 import com.our_company.iqiyi.Remote.RemoteUtil;
 
 import java.io.File;
@@ -35,7 +37,7 @@ import xiyou.mobile.User;
  * Created by Administrator on 2017/10/6.
  */
 
-public class MPlayer extends JZVideoPlayerStandard implements Runnable{
+public class MPlayer extends JZVideoPlayerStandard implements Runnable,AGEventHandler{
 
     private MDialog mdialog = null;
 
@@ -230,11 +232,11 @@ public class MPlayer extends JZVideoPlayerStandard implements Runnable{
         }
     }
 
-    public void setSource(String s)
+    public void setSource(String s,String t)
     {
         playSource=s;
         setUp(s
-                , JZVideoPlayerStandard.SCREEN_WINDOW_FULLSCREEN, "");
+                , JZVideoPlayerStandard.SCREEN_WINDOW_FULLSCREEN, t);
 
     }
 
@@ -264,20 +266,36 @@ public class MPlayer extends JZVideoPlayerStandard implements Runnable{
 
         mh.sendEmptyMessage(H.SHOWWAIT);
     }
+    protected RtcEngine rtcEngine() {
+        return ((App) ((Activity)c).getApplication()).getWorkerThread().getRtcEngine();
+    }
+
+    protected final WorkerThread worker() {
+        return ((App) ((Activity)c).getApplication()).getWorkerThread();
+    }
+
+    protected final EngineConfig config() {
+        return ((App) ((Activity)c).getApplication()).getWorkerThread().getEngineConfig();
+    }
+
+    protected final MyEngineEventHandler event() {
+        return ((App) ((Activity)c).getApplication()).getWorkerThread().eventHandler();
+    }
+
+
+    protected void initUIandEvent() {
+        event().addEventHandler(this);
+
+        String channelName = RemoteUtil.personal_uid+"";
+
+        worker().joinChannel(channelName, config().mUid);
+
+    }
 
     public void enableSync(int w,int h,int sw,int sh,String name,boolean sync)
     {
-        String appId = "e581e1feef22478d80839d8b9986a904";
-//        MyEngineEventHandler engineEventHandler=new MyEngineEventHandler(c,new EngineConfig());
-//        mRtcEngine = RtcEngine.create(c, appId, engineEventHandler.mRtcEventHandler);
-//        mRtcEngine.setChannelProfile(Constants.CHANNEL_PROFILE_COMMUNICATION);
-//        mRtcEngine.enableAudioVolumeIndication(200, 3); // 200 ms
-//        int aa=mRtcEngine.enableAudio();
-//        Log.e("音频",aa+"");
-//        mRtcEngine.setLogFile(Environment.getExternalStorageDirectory()
-//                + File.separator + c.getPackageName() + "/log/agora-rtc.log");
-//        mRtcEngine.joinChannel(null, "001", "OpenVCall", RemoteUtil.personal_uid);
 
+        initUIandEvent();
         Log.e("xx","enable sync");
         MDialog.dismissWait();
         startSync=true;
@@ -336,7 +354,12 @@ public class MPlayer extends JZVideoPlayerStandard implements Runnable{
                         public void run() {
                             if (Math.abs(position-getCurrentPositionWhenPlaying())>3000)
                         {
-                            JZMediaManager.instance().mediaPlayer.seekTo(position);
+                            try {
+                                JZMediaManager.instance().mediaPlayer.seekTo(position);
+                            }catch (Exception e)
+                            {
+
+                            }
                         }
                         }
                     });
@@ -387,7 +410,7 @@ public class MPlayer extends JZVideoPlayerStandard implements Runnable{
             name=null;
             synced=false;
             sizeSet=false;
-//            mRtcEngine.leaveChannel();
+            worker().leaveChannel("1");
         }
     }
 
@@ -448,6 +471,21 @@ public class MPlayer extends JZVideoPlayerStandard implements Runnable{
     public String getSource()
     {
         return playSource;
+    }
+
+    @Override
+    public void onJoinChannelSuccess(String channel, int uid, int elapsed) {
+
+    }
+
+    @Override
+    public void onUserOffline(int uid, int reason) {
+
+    }
+
+    @Override
+    public void onExtraCallback(int type, Object... data) {
+
     }
 
     class H extends Handler

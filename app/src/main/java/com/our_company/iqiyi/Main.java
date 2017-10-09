@@ -115,14 +115,14 @@ public class Main extends AppCompatActivity   {
 
         initChooseThemeColor();
 
-        search= (LinearLayout) findViewById(R.id.search2);
-        search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(Main.this, Search.class);
-                startActivity(intent);
-            }
-        });
+//        search= (LinearLayout) findViewById(R.id.search2);
+//        search.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent=new Intent(Main.this, Search.class);
+//                startActivity(intent);
+//            }
+//        });
         final Toolbar toolbar= (Toolbar) findViewById(R.id.toolbar);
         IntentFilter intentFilter=new IntentFilter(FRIEND_RECEIVER_ACTION);
         personalReceiver=new PersonalReceiver();

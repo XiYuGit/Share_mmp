@@ -28,7 +28,7 @@ public class ClientReceiveCmdThread extends Thread {
     @Override
     public void run() {
 
-
+            if(RemoteUtil.socketClient!=null)
             while( RemoteUtil.socketClient.isConnected())
             {
                 Log.e("是否连接",RemoteUtil.socketClient.isConnected()+"");

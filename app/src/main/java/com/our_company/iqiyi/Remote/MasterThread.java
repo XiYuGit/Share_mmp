@@ -38,10 +38,13 @@ public class MasterThread extends Thread {
         super.run();
         try {
             Log.e("MasterThread","等待");
+            Message msg=handler.obtainMessage();
+            msg.what=4396;
+            handler.sendMessageDelayed(msg,2000);
+
             if(RemoteUtil.socketClient==null)
                  RemoteUtil.socketClient=socketMaster.accept();
-
-
+            handler.removeMessages(4396);
             Log.e("MasterThread","链接");
             while( RemoteUtil.socketClient.isConnected())
             {

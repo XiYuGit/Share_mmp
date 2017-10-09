@@ -98,13 +98,15 @@ public class MasterActivity extends Activity  implements AGEventHandler {
             @Override
             public void onClick(View view) {
                 try {
-                    RemoteUtil.socketClient.close();
+                    if (RemoteUtil.socketClient!=null)
+                        RemoteUtil.socketClient.close();
                     RemoteUtil.socketClient=null;
-                    RemoteUtil.socketMaster.close();
+                    if(RemoteUtil.socketMaster!=null)
+                        RemoteUtil.socketMaster.close();
 
                     RemoteUtil.socketMaster=null;
                     MasterActivity.this.finish();
-                }catch (IOException e) {
+                }catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -113,24 +115,32 @@ public class MasterActivity extends Activity  implements AGEventHandler {
         handler=new Handler(){
             @Override
             public void handleMessage(Message msg) {
-                RemoteInfo remoteInfo= (RemoteInfo) msg.obj;
-                if(remoteInfo.getType()!=null)
+                if (msg.what==4396)
                 {
-                    Log.e("asd",remoteInfo.getType());
-                    if(remoteInfo.getType().equals("heng")){
-                        RemoteUtil.masterActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-                        return;
-                    }
-                    if (remoteInfo.getType().equals("shu"))
+                    Toast.makeText(MasterActivity.this,"请在同一网络下使用",Toast.LENGTH_SHORT);
+                    Log.e("成了","123");
+                }
+                else {
+                    RemoteInfo remoteInfo= (RemoteInfo) msg.obj;
+                    if(remoteInfo.getType()!=null)
                     {
-                        RemoteUtil.masterActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-                        return;
+                        Log.e("asd",remoteInfo.getType());
+                        if(remoteInfo.getType().equals("heng")){
+                            RemoteUtil.masterActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                            return;
+                        }
+                        if (remoteInfo.getType().equals("shu"))
+                        {
+                            RemoteUtil.masterActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                            return;
+                        }
                     }
+
+                    byte[]remoteBytes= remoteInfo.getRemoteDesktop();
+                    Bitmap bitmap= BitmapFactory.decodeByteArray(remoteBytes,0,remoteBytes.length);
+                    remoteView.setImageBitmap(bitmap);
                 }
 
-                byte[]remoteBytes= remoteInfo.getRemoteDesktop();
-                Bitmap bitmap= BitmapFactory.decodeByteArray(remoteBytes,0,remoteBytes.length);
-                remoteView.setImageBitmap(bitmap);
             }
         };
         initUIandEvent();
