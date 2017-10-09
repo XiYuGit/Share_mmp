@@ -13,9 +13,12 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.our_company.iqiyi.Player.App;
 import com.our_company.iqiyi.R;
+import com.our_company.iqiyi.Remote.Communicate.AGEventHandler;
 import com.our_company.iqiyi.Remote.Communicate.EngineConfig;
 import com.our_company.iqiyi.Remote.Communicate.MyEngineEventHandler;
+import com.our_company.iqiyi.Remote.Communicate.WorkerThread;
 import com.our_company.iqiyi.Util.LoginUtil;
 
 import java.io.File;
@@ -33,13 +36,54 @@ import static com.our_company.iqiyi.Remote.ClientReceiveCmdThread.receivceCmd;
  * Created by miaojie on 2017/5/3.
  */
 
-public class RemoteService extends Service{
+public class RemoteService extends Service implements AGEventHandler{
     private String TAG="RemoteService";
    private Reciver reciver;
    private ClientThread clientThread;
     private RtcEngine mRtcEngine;
     public static MasterThread masterThread;
-   public class Reciver extends BroadcastReceiver {
+
+    @Override
+    public void onJoinChannelSuccess(String channel, int uid, int elapsed) {
+
+    }
+
+    @Override
+    public void onUserOffline(int uid, int reason) {
+
+    }
+
+    @Override
+    public void onExtraCallback(int type, Object... data) {
+
+    }
+    protected RtcEngine rtcEngine() {
+        return ((App) getApplication()).getWorkerThread().getRtcEngine();
+    }
+
+    protected final WorkerThread worker() {
+        return ((App) getApplication()).getWorkerThread();
+    }
+
+    protected final EngineConfig config() {
+        return ((App) getApplication()).getWorkerThread().getEngineConfig();
+    }
+
+    protected final MyEngineEventHandler event() {
+        return ((App) getApplication()).getWorkerThread().eventHandler();
+    }
+
+
+    protected void initUIandEvent() {
+        event().addEventHandler(this);
+
+        String channelName = RemoteUtil.personal_uid+"";
+
+        worker().joinChannel(channelName, config().mUid);
+
+    }
+
+    public class Reciver extends BroadcastReceiver {
 
        public Reciver()
        {
@@ -95,17 +139,7 @@ public class RemoteService extends Service{
         IntentFilter intentFilter=new IntentFilter();
         intentFilter.addAction("ASDFG");
         registerReceiver(reciver,intentFilter);
-        String appId = "e581e1feef22478d80839d8b9986a904";
-
-        MyEngineEventHandler engineEventHandler=new MyEngineEventHandler(this,new EngineConfig());
-        mRtcEngine = RtcEngine.create(this, appId, engineEventHandler.mRtcEventHandler);
-        mRtcEngine.setChannelProfile(Constants.CHANNEL_PROFILE_COMMUNICATION);
-        mRtcEngine.enableAudioVolumeIndication(200, 3); // 200 ms
-        int aa=mRtcEngine.enableAudio();
-        Log.e("音频",aa+"");
-        mRtcEngine.setLogFile(Environment.getExternalStorageDirectory()
-                + File.separator + this.getPackageName() + "/log/agora-rtc.log");
-        mRtcEngine.joinChannel(null, "001", "OpenVCall", RemoteUtil.personal_uid);
+        initUIandEvent();
         new Thread()
         {
             @Override
@@ -143,6 +177,6 @@ public class RemoteService extends Service{
         RemoteUtil.socketClient=null;
         Toast.makeText(RemoteService.this, "控制结束", Toast.LENGTH_SHORT).show();
         unregisterReceiver(reciver);
-        mRtcEngine.leaveChannel();
+        worker().leaveChannel("1");
     }
 }

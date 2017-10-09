@@ -28,7 +28,7 @@ import java.util.List;
 public class Fragment4 extends Fragment {
 	View view;
 	private NetCate net_movie = new NetCate();
-	private List<Data> movielist=new ArrayList<>();
+	private List<Data> cateList=new ArrayList<>();
 	private String id;
 	private String title;
 	private String shorttile;
@@ -42,7 +42,7 @@ public class Fragment4 extends Fragment {
 		public void handleMessage(Message msg) {
 			super.handleMessage(msg);
 			String responseData = (String) msg.obj;
-			parseJson(responseData);
+			cateList=NetCate.parseData(responseData,Data.GET_ALL);
 			init();
 		}
 	};
@@ -60,48 +60,13 @@ public class Fragment4 extends Fragment {
 		return view;
 	}
 
-	public void parseJson(String jData) {
-		JSONObject jsonObject = null;
-		JSONArray jsonArray = null;
-		try {
-			jsonObject = new JSONObject(jData);
-			JSONObject jsonObject1=jsonObject.getJSONObject("data");
-			jsonArray=jsonObject1.getJSONArray("video_list");
-			for (int i = 0; i < jsonArray.length(); i++) {
-				jsonObject = jsonArray.getJSONObject(i);
-				id = jsonObject.getString("id");
-				title = jsonObject.getString("title");
-				shorttile = jsonObject.getString("short_title");
-				img = jsonObject.getString("img");
-				tvid=jsonObject.getString("tv_id");
-				play_num=jsonObject.getString("play_count_text");
-				score=jsonObject.getString("sns_score");
-				img = img.substring(0, img.length() - 4) + "_480_360" + img.substring(img.length() - 4, img.length());
-				Data movie = new Data(id, title, shorttile, img,tvid,play_num,score);
-				movielist.add(movie);
-			}
-		}catch (JSONException e) {
-
-
-			Log.e("errrrrrrrrrr","eeeeeeeeeeee");
-//				net_movie.setHandler(handler);
-//				net_movie.getNet();
-
-
-			Log.e("errrrrrrrrrr","rrrrrrrrrrr");
-
-			e.printStackTrace();
-		}
-
-	}
-
 	private void init(){
 		RecyclerView recyclerView= (RecyclerView) view.findViewById(R.id.rv4);
 
 		LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
 		recyclerView.setLayoutManager(linearLayoutManager);
 
-		RecyclerviewAdapter4 recyclerviewAdapter4=new RecyclerviewAdapter4(movielist);
+		RecyclerviewAdapter4 recyclerviewAdapter4=new RecyclerviewAdapter4(cateList);
 		recyclerView.setAdapter(recyclerviewAdapter4);
 		progressBar.setVisibility(View.GONE);
 	}

@@ -97,7 +97,7 @@ public class NetCate {
             }
         } catch (JSONException e) {
             e.printStackTrace();
-            Log.e("json",e.getCause().toString());
+            Log.e("json",e.toString());
         }
         return datas;
     }

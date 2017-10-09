@@ -2,6 +2,7 @@ package com.our_company.iqiyi.Remote;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
@@ -16,11 +17,19 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.our_company.iqiyi.Player.App;
 import com.our_company.iqiyi.R;
+import com.our_company.iqiyi.Remote.Communicate.AGEventHandler;
+import com.our_company.iqiyi.Remote.Communicate.ConstantApp;
 import com.our_company.iqiyi.Remote.Communicate.EngineConfig;
 import com.our_company.iqiyi.Remote.Communicate.MyEngineEventHandler;
+import com.our_company.iqiyi.Remote.Communicate.WorkerThread;
 import com.our_company.iqiyi.Util.LoginUtil;
 
 import java.io.File;
@@ -35,11 +44,36 @@ import xiyou.mobile.User;
  * Created by miaojie on 2017/5/3.
  */
 
-public class MasterActivity extends Activity {
+public class MasterActivity extends Activity  implements AGEventHandler {
     public static Handler handler;
     private RemoteImage remoteView;
     private Button remoteCancel;
     private RtcEngine mRtcEngine;
+    protected RtcEngine rtcEngine() {
+        return ((App) getApplication()).getWorkerThread().getRtcEngine();
+    }
+
+    protected final WorkerThread worker() {
+        return ((App) getApplication()).getWorkerThread();
+    }
+
+    protected final EngineConfig config() {
+        return ((App) getApplication()).getWorkerThread().getEngineConfig();
+    }
+
+    protected final MyEngineEventHandler event() {
+        return ((App) getApplication()).getWorkerThread().eventHandler();
+    }
+
+
+    protected void initUIandEvent() {
+        event().addEventHandler(this);
+
+        String channelName = RemoteUtil.personal_uid+"";
+
+        worker().joinChannel(channelName, config().mUid);
+
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,12 +109,14 @@ public class MasterActivity extends Activity {
                 }
             }
         });
+        RemoteUtil.masterActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         handler=new Handler(){
             @Override
             public void handleMessage(Message msg) {
                 RemoteInfo remoteInfo= (RemoteInfo) msg.obj;
                 if(remoteInfo.getType()!=null)
                 {
+                    Log.e("asd",remoteInfo.getType());
                     if(remoteInfo.getType().equals("heng")){
                         RemoteUtil.masterActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
                         return;
@@ -97,16 +133,7 @@ public class MasterActivity extends Activity {
                 remoteView.setImageBitmap(bitmap);
             }
         };
-        String appId = "e581e1feef22478d80839d8b9986a904";
-        MyEngineEventHandler engineEventHandler=new MyEngineEventHandler(this,new EngineConfig());
-        mRtcEngine = RtcEngine.create(this, appId, engineEventHandler.mRtcEventHandler);
-        mRtcEngine.setChannelProfile(Constants.CHANNEL_PROFILE_COMMUNICATION);
-        mRtcEngine.enableAudioVolumeIndication(200, 3); // 200 ms
-        int aa=mRtcEngine.enableAudio();
-        Log.e("音频",aa+"");
-        mRtcEngine.setLogFile(Environment.getExternalStorageDirectory()
-                + File.separator + this.getPackageName() + "/log/agora-rtc.log");
-        mRtcEngine.joinChannel(null, "001", "OpenVCall", RemoteUtil.personal_uid);
+        initUIandEvent();
 
         try {
             RemoteService.masterThread=new MasterThread(RemoteUtil.port,handler);
@@ -125,6 +152,21 @@ public class MasterActivity extends Activity {
         RemoteUtil.socketClient=null;
         RemoteUtil.socketMaster=null;
         RemoteUtil.canTouch=false;
-        mRtcEngine.leaveChannel();
+        worker().leaveChannel("1");
+    }
+
+    @Override
+    public void onJoinChannelSuccess(String channel, int uid, int elapsed) {
+
+    }
+
+    @Override
+    public void onUserOffline(int uid, int reason) {
+
+    }
+
+    @Override
+    public void onExtraCallback(int type, Object... data) {
+
     }
 }

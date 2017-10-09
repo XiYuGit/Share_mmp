@@ -14,6 +14,7 @@ import android.widget.ProgressBar;
 
 import com.our_company.iqiyi.Adapter.RecyclerviewAdapter3;
 import com.our_company.iqiyi.Net.Data;
+import com.our_company.iqiyi.Net.NetCate;
 import com.our_company.iqiyi.Net.NetExercise;
 import com.our_company.iqiyi.R;
 import com.our_company.iqiyi.bean.ThemeInfo;
@@ -28,7 +29,7 @@ import java.util.List;
 public class Fragment3 extends Fragment {
 	View view;
 	private NetExercise net_movie = new NetExercise();
-	private List<Data> movielist=new ArrayList<>();
+	private List<Data> exerciseList;
 	private String id;
 	private String title;
 	private String shorttile;
@@ -42,8 +43,9 @@ public class Fragment3 extends Fragment {
 		public void handleMessage(Message msg) {
 			super.handleMessage(msg);
 			String responseData = (String) msg.obj;
+			exerciseList= NetCate.parseData(responseData,Data.GET_ALL);
 //			parseJson(responseData);
-//			init();
+			init();
 		}
 	};
 
@@ -60,46 +62,13 @@ public class Fragment3 extends Fragment {
 		return view;
 	}
 
-	public void parseJson(String jData) {
-		JSONObject jsonObject = null;
-		JSONArray jsonArray = null;
-		try {
-			jsonObject = new JSONObject(jData);
-			JSONObject jsonObject1=jsonObject.getJSONObject("data");
-			jsonArray=jsonObject1.getJSONArray("video_list");
-			for (int i = 0; i < jsonArray.length(); i++) {
-				jsonObject = jsonArray.getJSONObject(i);
-				id = jsonObject.getString("id");
-				title = jsonObject.getString("title");
-				shorttile = jsonObject.getString("short_title");
-				img = jsonObject.getString("img");
-				tvid=jsonObject.getString("tv_id");
-				play_num=jsonObject.getString("play_count_text");
-				score=jsonObject.getString("sns_score");
-				img = img.substring(0, img.length() - 4) + "_480_360" + img.substring(img.length() - 4, img.length());
-				Data movie = new Data(id, title, shorttile, img,tvid,play_num,score);
-				movielist.add(movie);
-			}
-		}catch (JSONException e) {
-			e.printStackTrace();
-			Log.e("errrrrrrrrrr","eeeeeeeeeee");
-
-//				net_movie.setHandler(handler);
-//				net_movie.getNet();
-
-
-			Log.e("errrrrrrrrrr","rrrrrrrrrrr");
-		}
-
-	}
-
 	private void init(){
 		RecyclerView recyclerView= (RecyclerView) view.findViewById(R.id.rv3);
 
 		LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
 		recyclerView.setLayoutManager(linearLayoutManager);
 
-		RecyclerviewAdapter3 recyclerviewAdapter3=new RecyclerviewAdapter3(movielist);
+		RecyclerviewAdapter3 recyclerviewAdapter3=new RecyclerviewAdapter3(exerciseList);
 		recyclerView.setAdapter(recyclerviewAdapter3);
 		progressBar.setVisibility(View.GONE);
 	}

@@ -15,6 +15,7 @@ import android.widget.ProgressBar;
 
 import com.our_company.iqiyi.Adapter.RecyclerviewAdapter2;
 import com.our_company.iqiyi.Net.Data;
+import com.our_company.iqiyi.Net.NetCate;
 import com.our_company.iqiyi.Net.NetFashion;
 import com.our_company.iqiyi.R;
 import com.our_company.iqiyi.bean.ThemeInfo;
@@ -29,7 +30,7 @@ import java.util.List;
 public class Fragment2 extends Fragment {
 	View view;
 	private NetFashion net_fashion = new NetFashion();
-	private List<Data> movielist=new ArrayList<>();
+	private List<Data> fashionList;
 	private String id;
 	private String title;
 	private String shorttile;
@@ -43,8 +44,9 @@ public class Fragment2 extends Fragment {
 		public void handleMessage(Message msg) {
 			super.handleMessage(msg);
 			String responseData = (String) msg.obj;
+			fashionList=NetCate.parseData(responseData,Data.GET_ALL);
 //			parseJson(responseData);
-//			init();
+			init();
 		}
 	};
 
@@ -97,7 +99,7 @@ public class Fragment2 extends Fragment {
 		LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
 		recyclerView.setLayoutManager(linearLayoutManager);
 
-		RecyclerviewAdapter2 recyclerviewAdapter2=new RecyclerviewAdapter2(movielist);
+		RecyclerviewAdapter2 recyclerviewAdapter2=new RecyclerviewAdapter2(fashionList);
 		recyclerView.setAdapter(recyclerviewAdapter2);
 		progressBar.setVisibility(View.GONE);
 	}

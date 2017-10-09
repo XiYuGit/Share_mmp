@@ -1,18 +1,13 @@
 package com.our_company.iqiyi.Remote.Communicate;
 
 import android.content.Context;
-import android.util.Log;
+
 
 import java.util.Iterator;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.logging.Logger;
 
 import io.agora.rtc.IRtcEngineEventHandler;
 import io.agora.rtc.RtcEngine;
-
-/**
- * Created by miaojie on 2017/6/18.
- */
 
 public class MyEngineEventHandler {
     public MyEngineEventHandler(Context ctx, EngineConfig config) {
@@ -34,7 +29,7 @@ public class MyEngineEventHandler {
         this.mEventHandlerList.remove(handler);
     }
 
-    public final IRtcEngineEventHandler mRtcEventHandler = new IRtcEngineEventHandler() {
+    final IRtcEngineEventHandler mRtcEventHandler = new IRtcEngineEventHandler() {
 
         @Override
         public void onUserJoined(int uid, int elapsed) {
@@ -75,9 +70,7 @@ public class MyEngineEventHandler {
 
         }
 
-        @Override
-        public void onLastmileQuality(int quality) {
-        }
+
 
         @Override
         public void onError(int error) {
@@ -120,12 +113,11 @@ public class MyEngineEventHandler {
 
         @Override
         public void onJoinChannelSuccess(String channel, int uid, int elapsed) {
-            Log.e("成功","123");
+
             mConfig.mUid = uid;
 
             Iterator<AGEventHandler> it = mEventHandlerList.keySet().iterator();
             while (it.hasNext()) {
-                Log.e("成功","123");
                 AGEventHandler handler = it.next();
                 handler.onJoinChannelSuccess(channel, uid, elapsed);
             }
@@ -134,8 +126,6 @@ public class MyEngineEventHandler {
         public void onRejoinChannelSuccess(String channel, int uid, int elapsed) {
         }
 
-        public void onWarning(int warn) {
-        }
 
         @Override
         public void onAudioRouteChanged(int routing) {

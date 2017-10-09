@@ -1,8 +1,5 @@
 package com.our_company.iqiyi.Remote.Communicate;
 
-/**
- * Created by miaojie on 2017/6/18.
- */
 public class ConstantApp {
     public static final String APP_BUILD_DATE = "today";
 

@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Intent;
 
 import com.our_company.iqiyi.R;
+import com.our_company.iqiyi.Remote.Communicate.CurrentUserSettings;
+import com.our_company.iqiyi.Remote.Communicate.WorkerThread;
 import com.our_company.iqiyi.bean.ThemeInfo;
 
 import java.util.Random;
@@ -15,11 +17,36 @@ import xiyou.mobile.User;
  */
 
 public class App extends Application {
+    private WorkerThread mWorkerThread;
 
+    public synchronized void initWorkerThread() {
+        if (mWorkerThread == null) {
+            mWorkerThread = new WorkerThread(getApplicationContext());
+            mWorkerThread.start();
+
+            mWorkerThread.waitForReady();
+        }
+    }
+
+    public synchronized WorkerThread getWorkerThread() {
+        return mWorkerThread;
+    }
+
+    public synchronized void deInitWorkerThread() {
+        mWorkerThread.exit();
+        try {
+            mWorkerThread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        mWorkerThread = null;
+    }
+
+    public static final CurrentUserSettings mAudioSettings = new CurrentUserSettings();
     @Override
     public void onCreate() {
         super.onCreate();
-
+        initWorkerThread();
         startService(new Intent(this,ShareService.class));
         int []colorId={R.color.redPrimary,R.color.redPrimaryDark,
                 R.color.pinkPrimary,R.color.pinkPrimaryDark,

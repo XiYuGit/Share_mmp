@@ -227,9 +227,9 @@ public class Main extends AppCompatActivity   {
         ;
         titleList=new ArrayList<>();
         titleList.add("推荐");
-        titleList.add("电影");
-        titleList.add("电视剧");
-//        titleList.add("综艺");
+        titleList.add("时尚");
+        titleList.add("运动");
+        titleList.add("萌宠");
 //        titleList.add("更多");
 
         pager=(DecoratorViewPager) findViewById(R.id.pager);
@@ -239,13 +239,13 @@ public class Main extends AppCompatActivity   {
         fragList.add(new Fragment1());
         fragList.add(new Fragment2());
         fragList.add(new Fragment3());
-//        fragList.add(new Fragment4());
+        fragList.add(new Fragment4());
 //        fragList.add(new PersonalFragment());
         tabLayout= (TabLayout) findViewById(R.id.tabLayout);
         tabLayout.addTab(tabLayout.newTab().setText("推荐"));
-        tabLayout.addTab(tabLayout.newTab().setText("电影"));
-        tabLayout.addTab(tabLayout.newTab().setText("电视剧"));
-//        tabLayout.addTab(tabLayout.newTab().setText("综艺"));
+        tabLayout.addTab(tabLayout.newTab().setText("时尚"));
+        tabLayout.addTab(tabLayout.newTab().setText("运动"));
+        tabLayout.addTab(tabLayout.newTab().setText("萌宠"));
 //        tabLayout.addTab(tabLayout.newTab().setText("更多"));
         tabLayout.setTabMode(TabLayout.MODE_FIXED);
         myPagerAdapter= new MyPagerAdapter(fm,fragList,titleList);

@@ -1,8 +1,5 @@
 package com.our_company.iqiyi.Remote.Communicate;
 
-/**
- * Created by miaojie on 2017/6/18.
- */
 public interface AGEventHandler {
     void onJoinChannelSuccess(String channel, int uid, int elapsed);
 
