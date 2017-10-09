@@ -15,6 +15,7 @@ import android.widget.ProgressBar;
 import com.our_company.iqiyi.Adapter.RecyclerviewAdapter4;
 import com.our_company.iqiyi.Net.Data;
 import com.our_company.iqiyi.Net.NetCate;
+import com.our_company.iqiyi.Net.NetPet;
 import com.our_company.iqiyi.R;
 import com.our_company.iqiyi.bean.ThemeInfo;
 
@@ -27,7 +28,7 @@ import java.util.List;
 
 public class Fragment4 extends Fragment {
 	View view;
-	private NetCate net_movie = new NetCate();
+	private NetPet net_movie = new NetPet();
 	private List<Data> cateList=new ArrayList<>();
 	private String id;
 	private String title;

@@ -75,7 +75,7 @@ public class Fragment1 extends Fragment {
 					&&fashionList.size()!=0&&petList.size()!=0)
 			{
 				Log.e("初始化","111");
-				init();
+				setImage(imgUrl);
 
 			}
 		}
@@ -122,6 +122,13 @@ public class Fragment1 extends Fragment {
 		NetCate net_cate =new NetCate();
 		net_cate.setHandler(handler);
 		net_cate.getNet();
+
+		imgUrl[0]="http://img.kaiyanapp.com/29ee466fbbf8e1677811ffa7e34acdcc.jpeg?imageMogr2/quality/60/format/jpg";
+		imgUrl[1]="http://img.kaiyanapp.com/654fe9e1ef7293b3e3a95a9b2118a045.jpeg?imageMogr2/quality/60/format/jpg";
+		imgUrl[2]="http://img.kaiyanapp.com/2702dc22d19020ea06a03fd8fbe506a9.png?imageMogr2/quality/60/format/jpg";
+		imgUrl[3]="http://img.kaiyanapp.com/ed5b31dc5664914665c054727c09a735.png?imageMogr2/quality/60/format/jpg";
+		imgUrl[4]="http://img.kaiyanapp.com/3e99e33cf55d3c442573681e727dce10.jpeg?imageMogr2/quality/60/format/jpg";
+		imgUrl[5]="http://img.kaiyanapp.com/dd6ff5fa783d48a3ee91c33a77ed18d9.png?imageMogr2/quality/60/format/jpg";
 	}
 
 	void  init(){

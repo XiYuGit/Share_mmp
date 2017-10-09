@@ -72,9 +72,9 @@ public class NetCate {
                 JSONObject header=item.getJSONObject("header");
                 JSONObject content=item.getJSONObject("content").getJSONObject("data");
 
-                temp.setShorttile(header.getString("title"));
+                temp.setTitle(header.getString("title"));
                 temp.setImg(header.getString("icon"));
-                temp.setTitle(content.getJSONObject("author").getString("description"));
+                //temp.setTitle(content.getJSONObject("author").getString("description"));
                 JSONArray urlList=content.getJSONArray("playInfo");
                 switch (urlList.length())
                 {
@@ -92,6 +92,7 @@ public class NetCate {
                         break;
                 }
                 temp.setNum(content.getJSONObject("consumption").getInt("shareCount")+"");
+                temp.setScore(content.getJSONObject("consumption").getInt("shareCount")+"");
                 temp.setPlay_num(content.getJSONObject("consumption").getInt("collectionCount")+"");
                 datas.add(temp);
             }
