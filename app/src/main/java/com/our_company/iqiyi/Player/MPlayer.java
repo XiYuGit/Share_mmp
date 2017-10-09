@@ -50,6 +50,7 @@ public class MPlayer extends JZVideoPlayerStandard implements Runnable,AGEventHa
 
     private boolean seeking = true;
     private boolean performPlay=false;
+    private boolean isPlay=false;
     private int width;
     private boolean sizeSet = false;
     private static String name = null;
@@ -177,6 +178,7 @@ public class MPlayer extends JZVideoPlayerStandard implements Runnable,AGEventHa
         switch (v.getId())
         {
             case R.id.start:
+                isPlay=!isPlay;
                 if (!performPlay&&name!=null) {
                     new Thread() {
                         @Override
@@ -388,6 +390,17 @@ public class MPlayer extends JZVideoPlayerStandard implements Runnable,AGEventHa
                 mh.sendEmptyMessage(H.STARTPAUSE);
             }
         });
+        if (isPlay)
+        {
+            new Thread()
+            {
+                @Override
+                public void run() {
+                    super.run();
+                    User.get().startpause(MPlayer.this.name);
+                }
+            }.start();
+        }
     }
 
     private void endSync()
