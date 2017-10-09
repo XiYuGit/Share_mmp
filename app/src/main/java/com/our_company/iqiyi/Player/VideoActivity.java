@@ -70,7 +70,7 @@ public class VideoActivity extends AppCompatActivity {
 
         qv.setLayoutParams(new RelativeLayout.LayoutParams(w,h));
         cv.setLayoutParams(new RelativeLayout.LayoutParams(w,h));*/
-        qv.setSource(data.getPlayUrlLow());
+        qv.setSource(data.getPlayUrlLow(),data.getTitle());
         qv.switchScreen(true);
         //qv.startWindowFullscreen();
         //title=data.getTitle();
@@ -96,7 +96,7 @@ public class VideoActivity extends AppCompatActivity {
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         qv=(MPlayer)findViewById(R.id.player);
-        qv.setSource(data.getPlayUrlHigh());
+        qv.setSource(data.getPlayUrlHigh(),data.getTitle());
 
 //        setContentView(R.layout.playlayout);
 //

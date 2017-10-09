@@ -230,11 +230,11 @@ public class MPlayer extends JZVideoPlayerStandard implements Runnable{
         }
     }
 
-    public void setSource(String s)
+    public void setSource(String s,String t)
     {
         playSource=s;
         setUp(s
-                , JZVideoPlayerStandard.SCREEN_WINDOW_FULLSCREEN, "");
+                , JZVideoPlayerStandard.SCREEN_WINDOW_FULLSCREEN, t);
 
     }
 
