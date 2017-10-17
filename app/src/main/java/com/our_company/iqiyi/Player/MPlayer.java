@@ -149,7 +149,7 @@ public class MPlayer extends JZVideoPlayerStandard implements Runnable,AGEventHa
         while(running)
         {
             try {
-                Thread.sleep(3000);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -354,7 +354,7 @@ public class MPlayer extends JZVideoPlayerStandard implements Runnable,AGEventHa
                     post(new Runnable() {
                         @Override
                         public void run() {
-                            if (Math.abs(position-getCurrentPositionWhenPlaying())>3000)
+                            if (Math.abs(position-getCurrentPositionWhenPlaying())>1000)
                         {
                             try {
                                 JZMediaManager.instance().mediaPlayer.seekTo(position);
@@ -434,7 +434,7 @@ public class MPlayer extends JZVideoPlayerStandard implements Runnable,AGEventHa
             return ;
 
         removeListener();
-//        mRtcEngine.leaveChannel();
+        worker().leaveChannel("1");
         if (!ended)
         {
             ShareService.endSync();

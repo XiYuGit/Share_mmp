@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -252,6 +253,7 @@ public class RecyclerviewAdapter1 extends RecyclerView.Adapter {
             ((ViewHolderHead)holder).flipper.startFlipping();//开始播放
         }else if(holder instanceof ViewHolder2){
             //((ViewHolder2)holder).cardView11
+            Log.e("datalist",datalist.size()+"");
             Glide.with(context).load(datalist.get(0).getImg()).into(((ViewHolder2) holder).imageView11);
             Glide.with(context).load(datalist.get(1).getImg()).into(((ViewHolder2) holder).imageView12);
             Glide.with(context).load(datalist.get(2).getImg()).into(((ViewHolder2) holder).imageView21);

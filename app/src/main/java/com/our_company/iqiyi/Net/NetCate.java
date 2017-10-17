@@ -60,15 +60,19 @@ public class NetCate {
             JSONObject jsonObject=new JSONObject(data);
             JSONArray itemList=jsonObject.getJSONArray("itemList");
             int border;
+            Log.e("lenth",itemList.length()+"");
             if(type==Data.GET_ALL)
                 border=itemList.length();
             else
                 border=4;
-            for (int i=0;i<border;i++)
+            int num=0;
+            for (int i=0;i<border&&num<itemList.length();i++,num++)
             {
+                Log.e("NUM",num+"");
+
                 Data temp=new Data();
 
-                JSONObject item=itemList.getJSONObject(i).getJSONObject("data");
+                JSONObject item=itemList.getJSONObject(num).getJSONObject("data");
                 JSONObject header=item.getJSONObject("header");
                 JSONObject content=item.getJSONObject("content").getJSONObject("data");
 
@@ -76,6 +80,13 @@ public class NetCate {
                 temp.setImg(header.getString("icon"));
                 //temp.setTitle(content.getJSONObject("author").getString("description"));
                 JSONArray urlList=content.getJSONArray("playInfo");
+                Log.e("asd",urlList.length()+"");
+                if(urlList.length()==0)
+                {
+                    i--;
+                    continue;
+                }
+                Log.e("i",i+"");
                 switch (urlList.length())
                 {
                     case 1:
@@ -91,6 +102,7 @@ public class NetCate {
                         temp.setPlayUrlHigh(urlList.getJSONObject(2).getString("url"));
                         break;
                 }
+                Log.e("²¥·ÅµØÖ·",temp.getPlayUrlLow()+"----"+temp.getPlayUrlHigh()+"---"+temp.getPlayUrlNormal());
                 temp.setNum(content.getJSONObject("consumption").getInt("shareCount")+"");
                 temp.setScore(content.getJSONObject("consumption").getInt("shareCount")+"");
                 temp.setPlay_num(content.getJSONObject("consumption").getInt("collectionCount")+"");
