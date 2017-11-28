@@ -12,6 +12,7 @@ import android.widget.ProgressBar;
 
 import com.our_company.iqiyi.R;
 
+
 /**
  * Created by Administrator on 2017/7/2.
  */

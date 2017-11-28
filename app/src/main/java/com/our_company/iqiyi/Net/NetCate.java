@@ -102,7 +102,7 @@ public class NetCate {
                         temp.setPlayUrlHigh(urlList.getJSONObject(2).getString("url"));
                         break;
                 }
-                Log.e("≤•∑≈µÿ÷∑",temp.getPlayUrlLow()+"----"+temp.getPlayUrlHigh()+"---"+temp.getPlayUrlNormal());
+
                 temp.setNum(content.getJSONObject("consumption").getInt("shareCount")+"");
                 temp.setScore(content.getJSONObject("consumption").getInt("shareCount")+"");
                 temp.setPlay_num(content.getJSONObject("consumption").getInt("collectionCount")+"");
