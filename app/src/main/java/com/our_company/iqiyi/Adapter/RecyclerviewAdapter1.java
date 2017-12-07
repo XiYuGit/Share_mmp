@@ -254,44 +254,53 @@ public class RecyclerviewAdapter1 extends RecyclerView.Adapter {
         }else if(holder instanceof ViewHolder2){
             //((ViewHolder2)holder).cardView11
             Log.e("datalist",datalist.size()+"");
-            Glide.with(context).load(datalist.get(0).getImg()).into(((ViewHolder2) holder).imageView11);
-            Glide.with(context).load(datalist.get(1).getImg()).into(((ViewHolder2) holder).imageView12);
-            Glide.with(context).load(datalist.get(2).getImg()).into(((ViewHolder2) holder).imageView21);
-            Glide.with(context).load(datalist.get(3).getImg()).into(((ViewHolder2) holder).imageView22);
-            ((ViewHolder2) holder).textView11.setText(datalist.get(0).getTitle());
-            ((ViewHolder2) holder).textView12.setText(datalist.get(1).getTitle());
-            ((ViewHolder2) holder).textView21.setText(datalist.get(2).getTitle());
-            ((ViewHolder2) holder).textView22.setText(datalist.get(3).getTitle());
-            ((ViewHolder2) holder).textView11p.setText(datalist.get(0).getPlay_num());
-            ((ViewHolder2) holder).textView12p.setText(datalist.get(1).getPlay_num());
-
+            if(datalist!=null&&datalist.size()>=4) {
+                Glide.with(context).load(datalist.get(0).getImg()).into(((ViewHolder2) holder).imageView11);
+                Glide.with(context).load(datalist.get(1).getImg()).into(((ViewHolder2) holder).imageView12);
+                Glide.with(context).load(datalist.get(2).getImg()).into(((ViewHolder2) holder).imageView21);
+                Glide.with(context).load(datalist.get(3).getImg()).into(((ViewHolder2) holder).imageView22);
+                ((ViewHolder2) holder).textView11.setText(datalist.get(0).getTitle());
+                ((ViewHolder2) holder).textView12.setText(datalist.get(1).getTitle());
+                ((ViewHolder2) holder).textView21.setText(datalist.get(2).getTitle());
+                ((ViewHolder2) holder).textView22.setText(datalist.get(3).getTitle());
+                ((ViewHolder2) holder).textView11p.setText(datalist.get(0).getPlay_num());
+                ((ViewHolder2) holder).textView12p.setText(datalist.get(1).getPlay_num());
+            }
         }else if(holder instanceof ViewHolder3){
-            Glide.with(context).load(judatalist.get(0).getImg()).into(((ViewHolder3) holder).imageView11);
-            Glide.with(context).load(judatalist.get(1).getImg()).into(((ViewHolder3) holder).imageView12);
-            Glide.with(context).load(judatalist.get(2).getImg()).into(((ViewHolder3) holder).imageView21);
-            Glide.with(context).load(judatalist.get(3).getImg()).into(((ViewHolder3) holder).imageView22);
-            ((ViewHolder3) holder).textView11.setText(judatalist.get(0).getTitle());
-            ((ViewHolder3) holder).textView12.setText(judatalist.get(1).getTitle());
-            ((ViewHolder3) holder).textView21.setText(judatalist.get(2).getTitle());
-            ((ViewHolder3) holder).textView22.setText(judatalist.get(3).getTitle());
+
+            if(judatalist!=null&&judatalist.size()>=4){
+                Glide.with(context).load(judatalist.get(0).getImg()).into(((ViewHolder3) holder).imageView11);
+                Glide.with(context).load(judatalist.get(1).getImg()).into(((ViewHolder3) holder).imageView12);
+                Glide.with(context).load(judatalist.get(2).getImg()).into(((ViewHolder3) holder).imageView21);
+                Glide.with(context).load(judatalist.get(3).getImg()).into(((ViewHolder3) holder).imageView22);
+                ((ViewHolder3) holder).textView11.setText(judatalist.get(0).getTitle());
+                ((ViewHolder3) holder).textView12.setText(judatalist.get(1).getTitle());
+                ((ViewHolder3) holder).textView21.setText(judatalist.get(2).getTitle());
+                ((ViewHolder3) holder).textView22.setText(judatalist.get(3).getTitle());
+            }
         }else if(holder instanceof ViewHolder4){
-            Glide.with(context).load(movielist.get(0).getImg()).into(((ViewHolder4) holder).imageView11);
-            Glide.with(context).load(movielist.get(1).getImg()).into(((ViewHolder4) holder).imageView12);
-            Glide.with(context).load(movielist.get(2).getImg()).into(((ViewHolder4) holder).imageView21);
-            Glide.with(context).load(movielist.get(3).getImg()).into(((ViewHolder4) holder).imageView22);
-            ((ViewHolder4) holder).textView11.setText(movielist.get(0).getTitle());
-            ((ViewHolder4) holder).textView12.setText(movielist.get(1).getTitle());
-            ((ViewHolder4) holder).textView21.setText(movielist.get(2).getTitle());
-            ((ViewHolder4) holder).textView22.setText(movielist.get(3).getTitle());
+
+            if(movielist!=null&&movielist.size()>4) {
+                Glide.with(context).load(movielist.get(0).getImg()).into(((ViewHolder4) holder).imageView11);
+                Glide.with(context).load(movielist.get(1).getImg()).into(((ViewHolder4) holder).imageView12);
+                Glide.with(context).load(movielist.get(2).getImg()).into(((ViewHolder4) holder).imageView21);
+                Glide.with(context).load(movielist.get(3).getImg()).into(((ViewHolder4) holder).imageView22);
+                ((ViewHolder4) holder).textView11.setText(movielist.get(0).getTitle());
+                ((ViewHolder4) holder).textView12.setText(movielist.get(1).getTitle());
+                ((ViewHolder4) holder).textView21.setText(movielist.get(2).getTitle());
+                ((ViewHolder4) holder).textView22.setText(movielist.get(3).getTitle());
+            }
         }else{
-            Glide.with(context).load(zongyilist.get(0).getImg()).into(((ViewHolder5) holder).imageView11);
-            Glide.with(context).load(zongyilist.get(1).getImg()).into(((ViewHolder5) holder).imageView12);
-            Glide.with(context).load(zongyilist.get(2).getImg()).into(((ViewHolder5) holder).imageView21);
-            Glide.with(context).load(zongyilist.get(3).getImg()).into(((ViewHolder5) holder).imageView22);
-            ((ViewHolder5) holder).textView11.setText(zongyilist.get(0).getTitle());
-            ((ViewHolder5) holder).textView12.setText(zongyilist.get(1).getTitle());
-            ((ViewHolder5) holder).textView21.setText(zongyilist.get(2).getTitle());
-            ((ViewHolder5) holder).textView22.setText(zongyilist.get(3).getTitle());
+            if(zongyilist!=null&& zongyilist.size()>=4) {
+                Glide.with(context).load(zongyilist.get(0).getImg()).into(((ViewHolder5) holder).imageView11);
+                Glide.with(context).load(zongyilist.get(1).getImg()).into(((ViewHolder5) holder).imageView12);
+                Glide.with(context).load(zongyilist.get(2).getImg()).into(((ViewHolder5) holder).imageView21);
+                Glide.with(context).load(zongyilist.get(3).getImg()).into(((ViewHolder5) holder).imageView22);
+                ((ViewHolder5) holder).textView11.setText(zongyilist.get(0).getTitle());
+                ((ViewHolder5) holder).textView12.setText(zongyilist.get(1).getTitle());
+                ((ViewHolder5) holder).textView21.setText(zongyilist.get(2).getTitle());
+                ((ViewHolder5) holder).textView22.setText(zongyilist.get(3).getTitle());
+            }
         }
     }
 

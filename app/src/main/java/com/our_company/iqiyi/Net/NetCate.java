@@ -105,8 +105,7 @@ public class NetCate {
 
                 temp.setNum(content.getJSONObject("consumption").getInt("shareCount")+"");
                 temp.setScore(content.getJSONObject("consumption").getInt("shareCount")+"");
-                temp.setPlay_num(content.getJSONObject("consumption").getInt("collectionCount")+"");
-                datas.add(temp);
+                temp.setPlay_num(content.getJSONObject("consumption").getInt("collectionCount")+"");                datas.add(temp);
             }
         } catch (JSONException e) {
             e.printStackTrace();

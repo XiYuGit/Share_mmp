@@ -43,7 +43,7 @@ public class Fragment3 extends Fragment {
 		public void handleMessage(Message msg) {
 			super.handleMessage(msg);
 			String responseData = (String) msg.obj;
-			exerciseList= NetCate.parseData(responseData,Data.GET_ALL);
+			exerciseList= NetExercise.parseData(responseData,Data.GET_ALL);
 //			parseJson(responseData);
 			init();
 		}

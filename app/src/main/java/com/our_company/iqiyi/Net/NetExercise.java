@@ -4,7 +4,12 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
+import java.util.ArrayList;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -46,6 +51,45 @@ public class NetExercise {
                 handler.sendMessage(message);
             }
         });
+    }
+
+
+    public static ArrayList<Data> parseData(String data, int type){
+        ArrayList<Data>datas=new ArrayList<>();
+        try {
+
+            JSONObject jsonObject=new JSONObject(data);
+            JSONArray itemList=jsonObject.getJSONArray("itemList");
+            for(int i=1;i<itemList.length();i++){
+                Data  data1 =new Data();
+                JSONObject jsonObjectContnet= ((JSONObject) itemList.get(i)).getJSONObject("data").getJSONObject("content");
+                JSONObject jsonObjectHeader= ((JSONObject) itemList.get(i)).getJSONObject("data").getJSONObject("header");
+
+                JSONObject jsonObjectp =jsonObjectContnet.getJSONObject("data");
+
+                String title =jsonObjectp.getString("title");
+                String playUrl=jsonObjectp.getString("playUrl");
+                String time =jsonObjectp.getString("duration");
+                String img =jsonObjectHeader.getString("icon");
+
+                data1.setTitle(title);
+                data1.setImg(img);
+                data1.setPlayUrlLow(playUrl);
+                data1.setPlayUrlNormal(playUrl);
+                data1.setPlayUrlHigh(playUrl);
+                data1.setNum(time);
+                data1.setScore(time);
+                data1.setPlay_num(time);
+
+                datas.add(data1);
+
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Log.e("json",e.toString());
+        }
+        return datas;
+
     }
 
 }

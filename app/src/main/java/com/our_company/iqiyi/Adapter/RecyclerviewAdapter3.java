@@ -51,7 +51,7 @@ public class RecyclerviewAdapter3 extends RecyclerView.Adapter {
         if (holder instanceof ViewHolderHead) {
             Glide.with(context).load(movielist.get(0).getImg()).into(((ViewHolderHead) holder).imageView11);
             ((ViewHolderHead) holder).textView11.setText(movielist.get(0).getTitle());
-            ((ViewHolderHead) holder).textView12.setText(movielist.get(0).getScore());
+            ((ViewHolderHead) holder).textView12.setText(" "+Integer.parseInt(movielist.get(0).getScore())/60+" '"+Integer.parseInt(movielist.get(0).getScore())%60);
             ViewHolderHead viewHolderHead = (ViewHolderHead) holder;
             viewHolderHead.cardView11.setOnClickListener(new View.OnClickListener() {
                 @Override

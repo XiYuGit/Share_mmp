@@ -97,7 +97,10 @@ public class Fragment1 extends Fragment {
 			view=inflater.inflate(R.layout.view1,container,false);
 			progressBar= (ProgressBar) view.findViewById(R.id.progressBar);
 			if(progressBar.getVisibility()==View.GONE) progressBar.setVisibility(View.VISIBLE);
+
+			//写死
 			getInfo();
+			init();
 
 
 		} else {
@@ -109,26 +112,74 @@ public class Fragment1 extends Fragment {
 	}
 
 	private void getInfo(){
-		netFirst.setHandler(handler);
-		netFirst.getNet();
-		NetExercise net_exercise =new NetExercise();
-		net_exercise.setHandler(handler);
-		net_exercise.getNet();
-
-		NetFashion net_fashion =new NetFashion();
-		net_fashion.setHandler(handler);
-		net_fashion.getNet();
-
-		NetCate net_cate =new NetCate();
-		net_cate.setHandler(handler);
-		net_cate.getNet();
-
 		imgUrl[0]="http://img.kaiyanapp.com/29ee466fbbf8e1677811ffa7e34acdcc.jpeg?imageMogr2/quality/60/format/jpg";
 		imgUrl[1]="http://img.kaiyanapp.com/654fe9e1ef7293b3e3a95a9b2118a045.jpeg?imageMogr2/quality/60/format/jpg";
 		imgUrl[2]="http://img.kaiyanapp.com/2702dc22d19020ea06a03fd8fbe506a9.png?imageMogr2/quality/60/format/jpg";
 		imgUrl[3]="http://img.kaiyanapp.com/ed5b31dc5664914665c054727c09a735.png?imageMogr2/quality/60/format/jpg";
 		imgUrl[4]="http://img.kaiyanapp.com/3e99e33cf55d3c442573681e727dce10.jpeg?imageMogr2/quality/60/format/jpg";
 		imgUrl[5]="http://img.kaiyanapp.com/dd6ff5fa783d48a3ee91c33a77ed18d9.png?imageMogr2/quality/60/format/jpg";
+
+
+
+
+		Data data=new Data();
+		data.setTitle("震撼你的视野：行星及恒星的大小对比");
+		data.setImg("http://img.kaiyanapp.com/1f01fc390b3253c7db8ef8d0ce239df1.png");
+		data.setPlayUrlLow("http://baobab.kaiyanapp.com/api/v1/playUrl?vid=14796&editionType=high&source=aliyun");
+		data.setPlayUrlNormal("http://baobab.kaiyanapp.com/api/v1/playUrl?vid=14796&editionType=high&source=aliyun");
+		data.setPlayUrlHigh("http://baobab.kaiyanapp.com/api/v1/playUrl?vid=14796&editionType=high&source=aliyun");
+		data.setNum("53616");
+		data.setScore("53616");
+		data.setPlay_num("40785");
+		petList.add(data);
+
+		Data data1=new Data();
+		data.setTitle( "90后小伙教你在家就能做的鸡尾酒");
+		data.setImg("http://img.kaiyanapp.com/d01f5ea93e9092535a0d5c33de7fdeac.jpeg?imageMogr2/quality/60");
+		data.setPlayUrlLow("http://baobab.kaiyanapp.com/api/v1/playUrl?vid=64113&editionType=default&source=aliyun");
+		data.setPlayUrlNormal("http://baobab.kaiyanapp.com/api/v1/playUrl?vid=64113&editionType=default&source=aliyun");
+		data.setPlayUrlHigh("http://baobab.kaiyanapp.com/api/v1/playUrl?vid=64113&editionType=default&source=aliyun");
+		data.setNum("53616");
+		data.setScore("53616");
+		data.setPlay_num("40785");
+		petList.add(data1);
+
+		Data data2=new Data();
+		data.setTitle( "90后小伙教你在家就能做的鸡尾酒");
+		data.setImg("http://img.kaiyanapp.com/d01f5ea93e9092535a0d5c33de7fdeac.jpeg?imageMogr2/quality/60");
+		data.setPlayUrlLow("http://baobab.kaiyanapp.com/api/v1/playUrl?vid=64113&editionType=default&source=aliyun");
+		data.setPlayUrlNormal("http://baobab.kaiyanapp.com/api/v1/playUrl?vid=64113&editionType=default&source=aliyun");
+		data.setPlayUrlHigh("http://baobab.kaiyanapp.com/api/v1/playUrl?vid=64113&editionType=default&source=aliyun");
+		data.setNum("53616");
+		data.setScore("53616");
+		data.setPlay_num("40785");
+		petList.add(data2);
+
+
+
+
+
+		setImage(imgUrl);
+
+
+		//netFirst.setHandler(handler);	//数据写死
+		//netFirst.getNet();
+
+//		NetExercise net_exercise =new NetExercise();
+//		net_exercise.setHandler(handler);
+//		net_exercise.getNet();
+//
+//		NetFashion net_fashion =new NetFashion();
+//		net_fashion.setHandler(handler);
+//		net_fashion.getNet();
+//
+//		NetCate net_cate =new NetCate();
+//		net_cate.setHandler(handler);
+//		net_cate.getNet();
+//
+
+
+
 	}
 
 	void  init(){
