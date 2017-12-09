@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,11 +23,10 @@ import java.util.List;
  * Created by little star on 2017/6/15.
  */
 
-
-public class RecyclerviewAdapter3 extends RecyclerView.Adapter {
+public class RecyclerviewAdapter5 extends RecyclerView.Adapter {
     private Context context;
     private List<Data> movielist=new ArrayList<>();
-    public RecyclerviewAdapter3(List<Data>movielist){
+    public RecyclerviewAdapter5(List<Data>movielist){
         this.movielist=movielist;
     }
     @Override
@@ -35,24 +35,26 @@ public class RecyclerviewAdapter3 extends RecyclerView.Adapter {
         RecyclerView.ViewHolder holder = null;
 
         if (viewType == 0) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view2_2, parent, false);
-            holder=new  ViewHolderHead(view);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view2_3, parent, false);
+            holder=new RecyclerviewAdapter5.ViewHolderHead(view);
             return holder;
         } else {
 
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view2_4, parent, false);
-            holder = new ViewHolder(view);
+            holder = new RecyclerviewAdapter5.ViewHolder(view);
             return holder;
         }
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
-        if (holder instanceof ViewHolderHead) {
-            Glide.with(context).load(movielist.get(0).getImg()).into(((ViewHolderHead) holder).imageView11);
-            ((ViewHolderHead) holder).textView11.setText(movielist.get(0).getTitle());
-            ((ViewHolderHead) holder).textView12.setText(" "+Integer.parseInt(movielist.get(0).getScore())/60+" '"+Integer.parseInt(movielist.get(0).getScore())%60);
-            ViewHolderHead viewHolderHead = (ViewHolderHead) holder;
+        if (holder instanceof RecyclerviewAdapter5.ViewHolderHead) {
+            Glide.with(context).load(movielist.get(0).getImg()).into(((RecyclerviewAdapter5.ViewHolderHead) holder).imageView11);
+            ((RecyclerviewAdapter5.ViewHolderHead) holder).textView11.setText(movielist.get(0).getShorttile());
+            String temp=movielist.get(0).getPlay_num().toString();
+            Log.e("12321",temp);
+            ((RecyclerviewAdapter5.ViewHolderHead) holder).textView12.setText(temp);
+            RecyclerviewAdapter5.ViewHolderHead viewHolderHead = (RecyclerviewAdapter5.ViewHolderHead) holder;
             viewHolderHead.cardView11.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -63,13 +65,13 @@ public class RecyclerviewAdapter3 extends RecyclerView.Adapter {
             });
 
         } else {
-            Glide.with(context).load(movielist.get(position * 2).getImg()).into(((ViewHolder) holder).imageView11);
-            Glide.with(context).load(movielist.get(position * 2 + 1).getImg()).into(((ViewHolder) holder).imageView12);
-            ((ViewHolder) holder).textView11.setText(movielist.get(position * 2).getTitle());
-            ((ViewHolder) holder).textView12.setText(movielist.get(position * 2 + 1).getTitle());
-            ((ViewHolder) holder).textViewtag1.setText(" "+Integer.parseInt(movielist.get(position * 2 ).getScore())/60+" '"+Integer.parseInt(movielist.get(position * 2 ).getScore())%60);
-            ((ViewHolder) holder).textViewtag2.setText(" "+Integer.parseInt(movielist.get(position * 2+1).getScore())/60+"‘"+Integer.parseInt(movielist.get(position * 2+1).getScore())%60);
-            ViewHolder viewHolder = (ViewHolder) holder;
+            Glide.with(context).load(movielist.get(position * 2).getImg()).into(((RecyclerviewAdapter5.ViewHolder) holder).imageView11);
+            Glide.with(context).load(movielist.get(position * 2 + 1).getImg()).into(((RecyclerviewAdapter5.ViewHolder) holder).imageView12);
+            ((RecyclerviewAdapter5.ViewHolder) holder).textView11.setText(movielist.get(position * 2).getTitle());
+            ((RecyclerviewAdapter5.ViewHolder) holder).textView12.setText(movielist.get(position * 2 + 1).getTitle());
+            ((ViewHolder) holder).textViewTag1.setText(" "+Integer.parseInt(movielist.get(position * 2 ).getScore())/60+" '"+Integer.parseInt(movielist.get(position * 2 ).getScore())%60);
+            ((ViewHolder) holder).textViewTag2.setText(" "+Integer.parseInt(movielist.get(position * 2 +1).getScore())/60+" '"+Integer.parseInt(movielist.get(position * 2 +1).getScore())%60);
+            RecyclerviewAdapter5.ViewHolder viewHolder = (RecyclerviewAdapter5.ViewHolder) holder;
             viewHolder.cardView11.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -112,7 +114,6 @@ public class RecyclerviewAdapter3 extends RecyclerView.Adapter {
             imageView11= (ImageView) itemView.findViewById(R.id.iv11);
             textView11= (TextView) itemView.findViewById(R.id.tv11);
             textView12= (TextView) itemView.findViewById(R.id.tv_tag);
-
         }
     }
 
@@ -123,8 +124,8 @@ public class RecyclerviewAdapter3 extends RecyclerView.Adapter {
         ImageView imageView12;
         TextView textView11;
         TextView textView12;
-        TextView textViewtag1;
-        TextView textViewtag2;
+        TextView textViewTag1;
+        TextView textViewTag2;
         public ViewHolder(View itemView) {
             super(itemView);
             cardView11= (CardView) itemView.findViewById(R.id.dcv21);
@@ -133,8 +134,8 @@ public class RecyclerviewAdapter3 extends RecyclerView.Adapter {
             imageView12= (ImageView) itemView.findViewById(R.id.iv12);
             textView11= (TextView) itemView.findViewById(R.id.tv11);
             textView12= (TextView) itemView.findViewById(R.id.tv12);
-            textViewtag1= (TextView) itemView.findViewById(R.id.tag1);
-            textViewtag2= (TextView) itemView.findViewById(R.id.tag2);
+            textViewTag1= (TextView) itemView.findViewById(R.id.tag1);
+            textViewTag2= (TextView) itemView.findViewById(R.id.tag2);
         }
     }
 }

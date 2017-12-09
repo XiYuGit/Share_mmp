@@ -16,6 +16,7 @@ import android.widget.ProgressBar;
 import com.our_company.iqiyi.Adapter.RecyclerviewAdapter2;
 import com.our_company.iqiyi.Net.Data;
 import com.our_company.iqiyi.Net.NetCate;
+import com.our_company.iqiyi.Net.NetExercise;
 import com.our_company.iqiyi.Net.NetFashion;
 import com.our_company.iqiyi.R;
 import com.our_company.iqiyi.bean.ThemeInfo;
@@ -44,8 +45,7 @@ public class Fragment2 extends Fragment {
 		public void handleMessage(Message msg) {
 			super.handleMessage(msg);
 			String responseData = (String) msg.obj;
-			fashionList=NetCate.parseData(responseData,Data.GET_ALL);
-//			parseJson(responseData);
+			fashionList= NetExercise.parseData(responseData,Data.GET_ALL);
 			init();
 		}
 	};

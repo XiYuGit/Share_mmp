@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="210dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
+    android:background="#FFF"
     >
     <LinearLayout
         android:layout_width="match_parent"
@@ -58,6 +58,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:id="@+id/tv11"
+                    android:minLines="2"
+                    android:maxLines="2"
                     android:layout_gravity="center"
                     />
             </LinearLayout>
@@ -109,6 +111,8 @@
                     android:layout_marginTop="5dp"
                     android:id="@+id/tv12"
                     android:layout_gravity="center"
+                    android:minLines="2"
+                    android:maxLines="2"
                     />
             </LinearLayout>
 

@@ -47,6 +47,7 @@ import com.our_company.iqiyi.Fragment.Fragment1;
 import com.our_company.iqiyi.Fragment.Fragment2;
 import com.our_company.iqiyi.Fragment.Fragment3;
 import com.our_company.iqiyi.Fragment.Fragment4;
+import com.our_company.iqiyi.Fragment.Fragment5;
 import com.our_company.iqiyi.Player.ShareService;
 import com.our_company.iqiyi.Remote.RemoteUtil;
 import com.our_company.iqiyi.Service.FriendService;
@@ -230,6 +231,7 @@ public class Main extends AppCompatActivity   {
         titleList.add("时尚");
         titleList.add("运动");
         titleList.add("萌宠");
+        titleList.add("搞笑");
 //        titleList.add("更多");
 
         pager=(DecoratorViewPager) findViewById(R.id.pager);
@@ -240,12 +242,14 @@ public class Main extends AppCompatActivity   {
         fragList.add(new Fragment2());
         fragList.add(new Fragment3());
         fragList.add(new Fragment4());
+        fragList.add(new Fragment5());
 //        fragList.add(new PersonalFragment());
         tabLayout= (TabLayout) findViewById(R.id.tabLayout);
         tabLayout.addTab(tabLayout.newTab().setText("推荐"));
         tabLayout.addTab(tabLayout.newTab().setText("时尚"));
         tabLayout.addTab(tabLayout.newTab().setText("运动"));
         tabLayout.addTab(tabLayout.newTab().setText("萌宠"));
+        tabLayout.addTab(tabLayout.newTab().setText("搞笑"));
 //        tabLayout.addTab(tabLayout.newTab().setText("更多"));
         tabLayout.setTabMode(TabLayout.MODE_FIXED);
         myPagerAdapter= new MyPagerAdapter(fm,fragList,titleList);

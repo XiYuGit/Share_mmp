@@ -18,12 +18,12 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 /**
- * Created by little star on 2017/6/15.
+ * Created by XiYu on 2017/12/7.
  */
 
-public class NetExercise {
-    private Handler handler;
-    public NetExercise() {}
+public class NetJoke {
+    public Handler handler;
+
     public void setHandler(Handler handler) {
         this.handler = handler;
     }
@@ -31,7 +31,7 @@ public class NetExercise {
     public void getNet(){
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
-                .url("http://baobab.kaiyanapp.com/api/v4/categories/videoList?start=10&num=10&strategy=date&id=18&udid=b37032bcc61348928fdf375011361a471a98cce5&vc=225&vn=3.12.0&deviceModel=1605-A01&first_channel=eyepetizer_360_market&last_channel=eyepetizer_360_market&system_version_code=23")
+                .url("http://baobab.kaiyanapp.com/api/v5/index/tab/category/28?udid=f5e4254be4b540419cfe8bc028c09cf5a0588e41&vc=230&vn=3.14&deviceModel=FRD-AL00&first_channel=eyepetizer_zhihuiyun_market&last_channel=eyepetizer_zhihuiyun_market&system_version_code=24")
                 .build();
         Call call=client.newCall(request);
         call.enqueue(new Callback() {
@@ -53,38 +53,43 @@ public class NetExercise {
         });
     }
 
-
     public static ArrayList<Data> parseData(String data, int type){
         ArrayList<Data>datas=new ArrayList<>();
         try {
-
+            System.out.println(data);
             JSONObject jsonObject=new JSONObject(data);
             JSONArray itemList=jsonObject.getJSONArray("itemList");
+            Log.e("jjjjjjjjjjjjjjj","jjjjjjjjjj");
             for(int i=1;i<itemList.length();i++){
-                Data  data1 =new Data();
-                JSONObject jsonObjectContnet= ((JSONObject) itemList.get(i)).getJSONObject("data").getJSONObject("content");
+                if(((JSONObject) itemList.get(i)).getString("type").length()==10)
+                {
+                    Log.e("jjjjjjjjjjjjjjj","jjjjjjjjjj1");
+                    Data data1 = new Data();
+                    JSONObject jsonObjectContnet = ((JSONObject) itemList.get(i)).getJSONObject("data").getJSONObject("content");
 
-                JSONObject jsonObjectp =jsonObjectContnet.getJSONObject("data");
-                JSONObject jsonObjectImg=jsonObjectp.getJSONObject("cover");
+                    JSONObject jsonObjectp = jsonObjectContnet.getJSONObject("data");
+                    JSONObject jsonObjectImg = jsonObjectp.getJSONObject("cover");
 
-                String title =jsonObjectp.getString("title");
-                String playUrl=jsonObjectp.getString("playUrl");
-                String time =jsonObjectp.getString("duration");
-                String img =jsonObjectImg.getString("feed");
+                    String title = jsonObjectp.getString("title");
+                    String playUrl = jsonObjectp.getString("playUrl");
+                    String time = jsonObjectp.getString("duration");
+                    String img = jsonObjectImg.getString("feed");
 
-                Log.e("eeeeeeeeeee",title);
+                    Log.e("exericose", title);
 
-                data1.setTitle(title);
-                data1.setImg(img);
-                data1.setPlayUrlLow(playUrl);
-                data1.setPlayUrlNormal(playUrl);
-                data1.setPlayUrlHigh(playUrl);
-                data1.setNum(time);
-                data1.setScore(time);
-                data1.setPlay_num(time);
+                    data1.setTitle(title);
+                    data1.setImg(img);
+                    data1.setPlayUrlLow(playUrl);
+                    data1.setPlayUrlNormal(playUrl);
+                    data1.setPlayUrlHigh(playUrl);
+                    data1.setNum(time);
+                    data1.setScore(time);
+                    data1.setPlay_num(time);
+                    datas.add(data1);
+                }
+                if(((JSONObject) itemList.get(i)).getString("type").length()==){
 
-                datas.add(data1);
-
+                }
             }
         } catch (JSONException e) {
             e.printStackTrace();

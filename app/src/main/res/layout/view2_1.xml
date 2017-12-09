@@ -43,6 +43,8 @@
             android:layout_marginTop="5dp"
             android:id="@+id/tv11"
             android:layout_gravity="center"
+            android:minLines="2"
+            android:maxLines="2"
             />
     </LinearLayout>
 
@@ -78,6 +80,8 @@
             android:layout_marginTop="5dp"
             android:id="@+id/tv12"
             android:layout_gravity="center"
+            android:minLines="2"
+            android:maxLines="2"
             />
     </LinearLayout>
 

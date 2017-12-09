@@ -40,7 +40,7 @@ public class RecyclerviewAdapter4 extends RecyclerView.Adapter {
             return holder;
         } else {
 
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view2_1, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view2_4, parent, false);
             holder = new RecyclerviewAdapter4.ViewHolder(view);
             return holder;
         }
@@ -51,7 +51,7 @@ public class RecyclerviewAdapter4 extends RecyclerView.Adapter {
         if (holder instanceof RecyclerviewAdapter4.ViewHolderHead) {
             Glide.with(context).load(movielist.get(0).getImg()).into(((RecyclerviewAdapter4.ViewHolderHead) holder).imageView11);
             ((RecyclerviewAdapter4.ViewHolderHead) holder).textView11.setText(movielist.get(0).getShorttile());
-            String temp="播放量:"+movielist.get(0).getPlay_num().toString();
+            String temp=movielist.get(0).getPlay_num().toString();
             Log.e("12321",temp);
             ((RecyclerviewAdapter4.ViewHolderHead) holder).textView12.setText(temp);
             RecyclerviewAdapter4.ViewHolderHead viewHolderHead = (RecyclerviewAdapter4.ViewHolderHead) holder;
@@ -69,7 +69,8 @@ public class RecyclerviewAdapter4 extends RecyclerView.Adapter {
             Glide.with(context).load(movielist.get(position * 2 + 1).getImg()).into(((RecyclerviewAdapter4.ViewHolder) holder).imageView12);
             ((RecyclerviewAdapter4.ViewHolder) holder).textView11.setText(movielist.get(position * 2).getTitle());
             ((RecyclerviewAdapter4.ViewHolder) holder).textView12.setText(movielist.get(position * 2 + 1).getTitle());
-
+            ((ViewHolder) holder).textViewTag1.setText(" "+Integer.parseInt(movielist.get(position * 2 ).getScore())/60+" '"+Integer.parseInt(movielist.get(position * 2 ).getScore())%60);
+            ((ViewHolder) holder).textViewTag2.setText(" "+Integer.parseInt(movielist.get(position * 2 +1).getScore())/60+" '"+Integer.parseInt(movielist.get(position * 2 +1).getScore())%60);
             RecyclerviewAdapter4.ViewHolder viewHolder = (RecyclerviewAdapter4.ViewHolder) holder;
             viewHolder.cardView11.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -123,6 +124,8 @@ public class RecyclerviewAdapter4 extends RecyclerView.Adapter {
         ImageView imageView12;
         TextView textView11;
         TextView textView12;
+        TextView textViewTag1;
+        TextView textViewTag2;
         public ViewHolder(View itemView) {
             super(itemView);
             cardView11= (CardView) itemView.findViewById(R.id.dcv21);
@@ -131,6 +134,8 @@ public class RecyclerviewAdapter4 extends RecyclerView.Adapter {
             imageView12= (ImageView) itemView.findViewById(R.id.iv12);
             textView11= (TextView) itemView.findViewById(R.id.tv11);
             textView12= (TextView) itemView.findViewById(R.id.tv12);
+            textViewTag1= (TextView) itemView.findViewById(R.id.tag1);
+            textViewTag2= (TextView) itemView.findViewById(R.id.tag2);
         }
     }
 }
