@@ -86,6 +86,7 @@ public class NetJoke {
                     data1.setScore(time);
                     data1.setPlay_num(time);
                     datas.add(data1);
+                    //data
                 }
                 if(((JSONObject) itemList.get(i)).getString("type").length()==){
 
