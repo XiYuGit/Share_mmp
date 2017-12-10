@@ -88,9 +88,7 @@ public class NetJoke {
                     datas.add(data1);
                     //data
                 }
-                if(((JSONObject) itemList.get(i)).getString("type").length()==){
-
-                }
+//
             }
         } catch (JSONException e) {
             e.printStackTrace();
