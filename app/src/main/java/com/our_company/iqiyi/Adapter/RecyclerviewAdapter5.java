@@ -50,9 +50,8 @@ public class RecyclerviewAdapter5 extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         if (holder instanceof RecyclerviewAdapter5.ViewHolderHead) {
             Glide.with(context).load(movielist.get(0).getImg()).into(((RecyclerviewAdapter5.ViewHolderHead) holder).imageView11);
-            ((RecyclerviewAdapter5.ViewHolderHead) holder).textView11.setText(movielist.get(0).getShorttile());
-            String temp=movielist.get(0).getPlay_num().toString();
-            Log.e("12321",temp);
+            ((RecyclerviewAdapter5.ViewHolderHead) holder).textView11.setText(movielist.get(0).getTitle());
+            String temp= " "+Integer.parseInt(movielist.get(0).getScore())/60+" '"+Integer.parseInt(movielist.get(0).getScore())%60;
             ((RecyclerviewAdapter5.ViewHolderHead) holder).textView12.setText(temp);
             RecyclerviewAdapter5.ViewHolderHead viewHolderHead = (RecyclerviewAdapter5.ViewHolderHead) holder;
             viewHolderHead.cardView11.setOnClickListener(new View.OnClickListener() {

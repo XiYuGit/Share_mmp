@@ -59,11 +59,9 @@ public class NetJoke {
             System.out.println(data);
             JSONObject jsonObject=new JSONObject(data);
             JSONArray itemList=jsonObject.getJSONArray("itemList");
-            Log.e("jjjjjjjjjjjjjjj","jjjjjjjjjj");
             for(int i=1;i<itemList.length();i++){
                 if(((JSONObject) itemList.get(i)).getString("type").length()==10)
                 {
-                    Log.e("jjjjjjjjjjjjjjj","jjjjjjjjjj1");
                     Data data1 = new Data();
                     JSONObject jsonObjectContnet = ((JSONObject) itemList.get(i)).getJSONObject("data").getJSONObject("content");
 
@@ -75,8 +73,6 @@ public class NetJoke {
                     String time = jsonObjectp.getString("duration");
                     String img = jsonObjectImg.getString("feed");
 
-                    Log.e("exericose", title);
-
                     data1.setTitle(title);
                     data1.setImg(img);
                     data1.setPlayUrlLow(playUrl);
@@ -86,9 +82,7 @@ public class NetJoke {
                     data1.setScore(time);
                     data1.setPlay_num(time);
                     datas.add(data1);
-                    //data
                 }
-//
             }
         } catch (JSONException e) {
             e.printStackTrace();
