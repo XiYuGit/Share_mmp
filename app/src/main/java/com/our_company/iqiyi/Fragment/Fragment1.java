@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import com.our_company.iqiyi.Adapter.RecyclerviewAdapter1;
+import com.our_company.iqiyi.Adapter.RecyclerviewAdapter1_switch;
 import com.our_company.iqiyi.Net.Data;
 import com.our_company.iqiyi.Net.NetHot;
 import com.our_company.iqiyi.Net.NetPet;
@@ -39,12 +40,14 @@ public class Fragment1 extends Fragment {
 	private Context context;
 	private Bitmap[] bm=new Bitmap[5];
 	private String[] imgUrl= new String[6];
+	private String[] imgPlayUrl= new String[6];
 	private String id=null;
 	private String title=null;
 	private String shorttile=null;
 	private String img=null;
 	private String tvid=null;
 	private String play_num=null;
+	private List<Data>hotList=new ArrayList<>();
 	private List<Data>pic_list;
 	private List<Data>cateList=new ArrayList<>();
 	private List<Data>exerciseList=new ArrayList<>();
@@ -60,27 +63,37 @@ public class Fragment1 extends Fragment {
 			switch (msg.what)
 			{
 				case 1:
-					petList=NetCate.parseData(responseData,Data.GET_RECOMMEND);
+					hotList=NetHot.parseData(responseData,Data.GET_RECOMMEND);
+					Log.e("handlerrrr",hotList.size()+"");
+					if(hotList.size()>4) {
+						for (int i = 0; i < 4; i++) {
+							imgUrl[i] = hotList.get(i).getImg();
+							imgPlayUrl[i] = hotList.get(i).getPlayUrlHigh();
+						}
+						setImage(imgUrl);
+					}
+//					petList=NetCate.parseData(responseData,Data.GET_RECOMMEND);
 					break;
-				case 2:
-					exerciseList=NetCate.parseData(responseData,Data.GET_RECOMMEND);
-					break;
-				case 3:
-					fashionList=NetCate.parseData(responseData,Data.GET_RECOMMEND);
-					break;
-				case 4:
-					cateList=NetCate.parseData(responseData,Data.GET_RECOMMEND);
-					break;
+//				case 2:
+//					exerciseList=NetCate.parseData(responseData,Data.GET_RECOMMEND);
+//					break;
+//				case 3:
+//					fashionList=NetCate.parseData(responseData,Data.GET_RECOMMEND);
+//					break;
+//				case 4:
+//					cateList=NetCate.parseData(responseData,Data.GET_RECOMMEND);
+//					break;
 			}
-			if(cateList.size()!=0&&exerciseList.size()!=0 &&fashionList.size()!=0&&petList.size()!=0)
-			{
-				setImage(imgUrl);
-			}
+//			if(cateList.size()!=0&&exerciseList.size()!=0 &&fashionList.size()!=0&&petList.size()!=0)
+//			{
+//				setImage(imgUrl);
+//			}
 		}
 	};
 	public Handler handler1=new Handler(){
 		@Override
 		public void handleMessage(Message msg) {
+			Log.e("views","end2");
 			init();
 		}
 	};
@@ -95,9 +108,7 @@ public class Fragment1 extends Fragment {
 			progressBar= (ProgressBar) view.findViewById(R.id.progressBar);
 			if(progressBar.getVisibility()==View.GONE) progressBar.setVisibility(View.VISIBLE);
 			getInfo();
-			init();
-
-
+			//init();
 		} else {
 			ViewGroup viewGroup = (ViewGroup) parentView.getParent();
 			if (viewGroup != null)
@@ -108,7 +119,7 @@ public class Fragment1 extends Fragment {
 
 	private void getInfo(){
 
-		setImage(imgUrl);
+
 		NetHot netHot =new NetHot();
 		netHot.setHandler(handler);
 		netHot.getNet();
@@ -130,12 +141,15 @@ public class Fragment1 extends Fragment {
 	}
 
 	void  init(){
+
 		RecyclerView recyclerView= (RecyclerView) view.findViewById(R.id.rcv);
 
 		LinearLayoutManager layoutManager=new LinearLayoutManager(getContext());
 		recyclerView.setLayoutManager(layoutManager);
 
-		RecyclerviewAdapter1 recyclerviewAdapter1=new RecyclerviewAdapter1(bm,fashionList,exerciseList,petList,cateList);
+//		RecyclerviewAdapter1 recyclerviewAdapter1=new RecyclerviewAdapter1(bm,fashionList,exerciseList,petList,cateList);
+//		recyclerView.setAdapter(recyclerviewAdapter1);
+		RecyclerviewAdapter1_switch recyclerviewAdapter1=new RecyclerviewAdapter1_switch(bm,hotList,exerciseList,petList,cateList);
 		recyclerView.setAdapter(recyclerviewAdapter1);
 
 		progressBar.setVisibility(View.GONE);
@@ -147,7 +161,8 @@ public class Fragment1 extends Fragment {
 			@Override
 			public void run() {
 				try {
-					for(int i=0;i<5;i++) {
+					for(int i=0;i<4;i++) {
+						Log.e("views","url::::"+imgUrl[i]);
 						URL iconUrl = new URL(imgUrl[i]);
 						URLConnection conn = iconUrl.openConnection();
 						HttpURLConnection http = (HttpURLConnection) conn;
@@ -160,6 +175,7 @@ public class Fragment1 extends Fragment {
 						bis.close();
 						is.close();// 关闭流
 					}
+					Log.e("views","end");
 					Message message=handler1.obtainMessage();
 					message.obj=bm;
 					handler1.sendMessage(message);

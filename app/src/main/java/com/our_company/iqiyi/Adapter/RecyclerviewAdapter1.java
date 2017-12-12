@@ -248,13 +248,7 @@ public class RecyclerviewAdapter1 extends RecyclerView.Adapter {
                // imageView.setImageBitmap(bitmaps[i]);
                 ((ViewHolderHead)holder).flipper.addView(imageView);
             }
-            ((ViewHolderHead) holder).flipper.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                     int postion = ((ViewHolderHead) holder).flipper.getDisplayedChild();
-                    Log.e("click",position+"");
-                }
-            });
+
             //flipper.setInAnimation(this,R.anim);//动画
             ((ViewHolderHead)holder).flipper.setFlipInterval(3000);
             ((ViewHolderHead)holder).flipper.startFlipping();//开始播放
