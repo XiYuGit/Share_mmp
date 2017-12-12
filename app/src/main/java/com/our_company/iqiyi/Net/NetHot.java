@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -51,9 +52,23 @@ public class NetHot {
 
     public class ArrayList<Data> parseData(String data,int type){
         ArrayList<Data> datas =new ArrayList<>();
-
         try{
             JSONObject jsonObject =new JSONObject(data);
+            JSONArray jsonArray   =new JSONArray("itemList");
+             for(int i=2;i<jsonArray.length();i++){.
+                 Data data1 =new Data();
+                 JSONObject jsonObject1 =((JSONObject)jsonArray.get(i)).getJSONObject("data");
+                 JSONObject jsonObject2 =jsonObject1.getJSONObject("cover");
+
+
+
+             }
+
+
+
+
+
+
 
         }catch(JSONException e){
             e.printStackTrace();

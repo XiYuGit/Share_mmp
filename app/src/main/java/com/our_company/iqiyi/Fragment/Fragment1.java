@@ -35,7 +35,7 @@ import java.util.List;
 
 public class Fragment1 extends Fragment {
 	private View view;
-	private List<RecyclerviewAdapter1>recyclerviewAdapter1List=new ArrayList<>();
+	private List <RecyclerviewAdapter1> recyclerviewAdapter1List=new ArrayList<>();
 	private Context context;
 	private Bitmap[] bm=new Bitmap[5];
 	private String[] imgUrl= new String[6];
@@ -107,6 +107,7 @@ public class Fragment1 extends Fragment {
 	}
 
 	private void getInfo(){
+
 		setImage(imgUrl);
 		NetHot netHot =new NetHot();
 		netHot.setHandler(handler);
