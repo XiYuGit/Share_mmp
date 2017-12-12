@@ -14,7 +14,7 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="20dp"
-            android:text="   热点"
+            android:text="   近期热门"
             android:textSize="15sp" />
         <ImageView
             android:layout_width="20dp"

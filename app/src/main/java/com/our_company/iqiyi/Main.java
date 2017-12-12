@@ -255,7 +255,7 @@ public class Main extends AppCompatActivity   {
         myPagerAdapter= new MyPagerAdapter(fm,fragList,titleList);
 
         pager.setAdapter(myPagerAdapter);
-    //    pager.setOffscreenPageLimit(2);
+        pager.setOffscreenPageLimit(4);
         pager.setCurrentItem(0);
 //        tabLayout.setupWithViewPager(pager);
 

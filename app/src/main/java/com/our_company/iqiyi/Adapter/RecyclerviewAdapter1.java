@@ -239,7 +239,7 @@ public class RecyclerviewAdapter1 extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
         Context contextV=holder.itemView.getContext();
         if(holder instanceof ViewHolderHead){
             for(int i=0;i<4;i++){
@@ -248,6 +248,13 @@ public class RecyclerviewAdapter1 extends RecyclerView.Adapter {
                // imageView.setImageBitmap(bitmaps[i]);
                 ((ViewHolderHead)holder).flipper.addView(imageView);
             }
+            ((ViewHolderHead) holder).flipper.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                     int postion = ((ViewHolderHead) holder).flipper.getDisplayedChild();
+                    Log.e("click",position+"");
+                }
+            });
             //flipper.setInAnimation(this,R.anim);//动画
             ((ViewHolderHead)holder).flipper.setFlipInterval(3000);
             ((ViewHolderHead)holder).flipper.startFlipping();//开始播放
@@ -332,6 +339,7 @@ public class RecyclerviewAdapter1 extends RecyclerView.Adapter {
           ViewHolderHead(View itemView) {
             super(itemView);
             flipper = (ViewFlipper) itemView.findViewById(R.id.vf);
+
         }
     }
 

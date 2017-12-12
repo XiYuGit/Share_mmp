@@ -18,6 +18,7 @@ import android.widget.ProgressBar;
 
 import com.our_company.iqiyi.Adapter.RecyclerviewAdapter1;
 import com.our_company.iqiyi.Net.Data;
+import com.our_company.iqiyi.Net.NetHot;
 import com.our_company.iqiyi.Net.NetPet;
 import com.our_company.iqiyi.Net.NetExercise;
 import com.our_company.iqiyi.Net.NetFashion;
@@ -29,6 +30,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Fragment1 extends Fragment {
@@ -70,13 +72,9 @@ public class Fragment1 extends Fragment {
 					cateList=NetCate.parseData(responseData,Data.GET_RECOMMEND);
 					break;
 			}
-			Log.e("size",cateList.size()+"-"+exerciseList.size()+"-"+fashionList.size()+"-"+petList.size());
-			if(cateList.size()!=0&&exerciseList.size()!=0
-					&&fashionList.size()!=0&&petList.size()!=0)
+			if(cateList.size()!=0&&exerciseList.size()!=0 &&fashionList.size()!=0&&petList.size()!=0)
 			{
-				Log.e("初始化","111");
 				setImage(imgUrl);
-
 			}
 		}
 	};
@@ -93,12 +91,9 @@ public class Fragment1 extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		if (parentView == null) {
-
 			view=inflater.inflate(R.layout.view1,container,false);
 			progressBar= (ProgressBar) view.findViewById(R.id.progressBar);
 			if(progressBar.getVisibility()==View.GONE) progressBar.setVisibility(View.VISIBLE);
-
-			//写死
 			getInfo();
 			init();
 
@@ -112,55 +107,10 @@ public class Fragment1 extends Fragment {
 	}
 
 	private void getInfo(){
-		imgUrl[0]="http://img.kaiyanapp.com/29ee466fbbf8e1677811ffa7e34acdcc.jpeg?imageMogr2/quality/60/format/jpg";
-		imgUrl[1]="http://img.kaiyanapp.com/654fe9e1ef7293b3e3a95a9b2118a045.jpeg?imageMogr2/quality/60/format/jpg";
-		imgUrl[2]="http://img.kaiyanapp.com/2702dc22d19020ea06a03fd8fbe506a9.png?imageMogr2/quality/60/format/jpg";
-		imgUrl[3]="http://img.kaiyanapp.com/ed5b31dc5664914665c054727c09a735.png?imageMogr2/quality/60/format/jpg";
-		imgUrl[4]="http://img.kaiyanapp.com/3e99e33cf55d3c442573681e727dce10.jpeg?imageMogr2/quality/60/format/jpg";
-		imgUrl[5]="http://img.kaiyanapp.com/dd6ff5fa783d48a3ee91c33a77ed18d9.png?imageMogr2/quality/60/format/jpg";
-
-
-
-
-		Data data=new Data();
-		data.setTitle("震撼你的视野：行星及恒星的大小对比");
-		data.setImg("http://img.kaiyanapp.com/1f01fc390b3253c7db8ef8d0ce239df1.png");
-		data.setPlayUrlLow("http://baobab.kaiyanapp.com/api/v1/playUrl?vid=14796&editionType=high&source=aliyun");
-		data.setPlayUrlNormal("http://baobab.kaiyanapp.com/api/v1/playUrl?vid=14796&editionType=high&source=aliyun");
-		data.setPlayUrlHigh("http://baobab.kaiyanapp.com/api/v1/playUrl?vid=14796&editionType=high&source=aliyun");
-		data.setNum("53616");
-		data.setScore("53616");
-		data.setPlay_num("40785");
-		petList.add(data);
-
-		Data data1=new Data();
-		data.setTitle( "90后小伙教你在家就能做的鸡尾酒");
-		data.setImg("http://img.kaiyanapp.com/d01f5ea93e9092535a0d5c33de7fdeac.jpeg?imageMogr2/quality/60");
-		data.setPlayUrlLow("http://baobab.kaiyanapp.com/api/v1/playUrl?vid=64113&editionType=default&source=aliyun");
-		data.setPlayUrlNormal("http://baobab.kaiyanapp.com/api/v1/playUrl?vid=64113&editionType=default&source=aliyun");
-		data.setPlayUrlHigh("http://baobab.kaiyanapp.com/api/v1/playUrl?vid=64113&editionType=default&source=aliyun");
-		data.setNum("53616");
-		data.setScore("53616");
-		data.setPlay_num("40785");
-		petList.add(data1);
-
-		Data data2=new Data();
-		data.setTitle( "90后小伙教你在家就能做的鸡尾酒");
-		data.setImg("http://img.kaiyanapp.com/d01f5ea93e9092535a0d5c33de7fdeac.jpeg?imageMogr2/quality/60");
-		data.setPlayUrlLow("http://baobab.kaiyanapp.com/api/v1/playUrl?vid=64113&editionType=default&source=aliyun");
-		data.setPlayUrlNormal("http://baobab.kaiyanapp.com/api/v1/playUrl?vid=64113&editionType=default&source=aliyun");
-		data.setPlayUrlHigh("http://baobab.kaiyanapp.com/api/v1/playUrl?vid=64113&editionType=default&source=aliyun");
-		data.setNum("53616");
-		data.setScore("53616");
-		data.setPlay_num("40785");
-		petList.add(data2);
-
-
-
-
-
 		setImage(imgUrl);
-
+		NetHot netHot =new NetHot();
+		netHot.setHandler(handler);
+		netHot.getNet();
 
 		//netFirst.setHandler(handler);	//数据写死
 		//netFirst.getNet();
@@ -176,15 +126,10 @@ public class Fragment1 extends Fragment {
 //		NetCate net_cate =new NetCate();
 //		net_cate.setHandler(handler);
 //		net_cate.getNet();
-//
-
-
-
 	}
 
 	void  init(){
 		RecyclerView recyclerView= (RecyclerView) view.findViewById(R.id.rcv);
-
 
 		LinearLayoutManager layoutManager=new LinearLayoutManager(getContext());
 		recyclerView.setLayoutManager(layoutManager);
@@ -195,99 +140,6 @@ public class Fragment1 extends Fragment {
 		progressBar.setVisibility(View.GONE);
 
 	}
-//	public void parseJson(String jData) {
-//		JSONObject jsonObject = null;
-//		JSONArray jsonArray = null;
-//		try {
-//			jsonObject = new JSONObject(jData);
-//			jsonArray = jsonObject.getJSONArray("data");
-//
-//			jsonObject = jsonArray.getJSONObject(0);
-//
-//			jsonArray = jsonObject.getJSONArray("video_list");
-//			for (int i = 0; i < 5; i++) {
-//				jsonObject = jsonArray.getJSONObject(i);
-//				imgUrl[i] = jsonObject.getString("img");
-//			}
-//
-//			jsonObject = new JSONObject(jData);
-//			jsonArray = jsonObject.getJSONArray("data");
-//			jsonObject = jsonArray.getJSONObject(1);
-//			jsonArray = jsonObject.getJSONArray("video_list");
-//			for (int i = 0; i < 4; i++) {
-//				jsonObject = jsonArray.getJSONObject(i);
-//				id = jsonObject.getString("id");
-//				title = jsonObject.getString("title");
-//				shorttile = jsonObject.getString("short_title");
-//				tvid=jsonObject.getString("tv_id");
-//				play_num=jsonObject.getString("play_count_text");
-//				img = jsonObject.getString("img");
-//				img = img.substring(0, img.length() - 4) + "_480_360" + img.substring(img.length() - 4, img.length());
-//				Data zixun = new Data(id, title, shorttile, img,tvid,play_num);
-//				zixun_list.add(zixun);
-//			}
-//
-//			jsonObject = new JSONObject(jData);
-//			jsonArray = jsonObject.getJSONArray("data");
-//			jsonObject = jsonArray.getJSONObject(2);
-//			jsonArray = jsonObject.getJSONArray("video_list");
-//			for (int i = 0; i < 4; i++) {
-//				jsonObject = jsonArray.getJSONObject(i);
-//				id = jsonObject.getString("id");
-//				title = jsonObject.getString("title");
-//				shorttile = jsonObject.getString("short_title");
-//				img = jsonObject.getString("img");
-//				play_num=jsonObject.getString("play_count_text");
-//				tvid=jsonObject.getString("tv_id");
-//				img = img.substring(0, img.length() - 4) + "_480_360" + img.substring(img.length() - 4, img.length());
-//				Data dianshiju = new Data(id, title, shorttile, img,tvid,play_num);
-//				dianshiju_list.add(dianshiju);
-//			}
-//
-//			jsonObject = new JSONObject(jData);
-//			jsonArray = jsonObject.getJSONArray("data");
-//			jsonObject = jsonArray.getJSONObject(3);
-//			jsonArray = jsonObject.getJSONArray("video_list");
-//			for (int i = 0; i < 4; i++) {
-//				jsonObject = jsonArray.getJSONObject(i);
-//				id = jsonObject.getString("id");
-//				title = jsonObject.getString("title");
-//				shorttile = jsonObject.getString("short_title");
-//				img = jsonObject.getString("img");
-//				play_num=jsonObject.getString("play_count_text");
-//				tvid=jsonObject.getString("tv_id");
-//				img = img.substring(0, img.length() - 4) + "_480_360" + img.substring(img.length() - 4, img.length());
-//				Data movie = new Data(id, title, shorttile, img,tvid,play_num);
-//				movie_list.add(movie);
-//				}
-//
-//			jsonObject = new JSONObject(jData);
-//			jsonArray = jsonObject.getJSONArray("data");
-//			jsonObject = jsonArray.getJSONObject(4);
-//			jsonArray = jsonObject.getJSONArray("video_list");
-//			for (int i = 0; i < 4; i++) {
-//				jsonObject = jsonArray.getJSONObject(i);
-//				id = jsonObject.getString("id");
-//				title = jsonObject.getString("title");
-//				shorttile = jsonObject.getString("short_title");
-//				img = jsonObject.getString("img");
-//				play_num=jsonObject.getString("play_count_text");
-//				tvid=jsonObject.getString("tv_id");
-//				img = img.substring(0, img.length() - 4) + "_480_360" + img.substring(img.length() - 4, img.length());
-//				Data zongyi = new Data(id, title, shorttile, img,tvid,play_num);
-//				zongyi_list.add(zongyi);
-//			}
-//
-//		}catch (JSONException e) {
-//
-//			Log.e("errrrrrrrrrr","eeeeeeeeeeeeee");
-//
-//
-//			Log.e("errrrrrrrrrr", "rrrrrrrrrrr");
-//
-//			e.printStackTrace();
-//		}
-//	}
 
 	public void setImage(final String [] imgUrl){
 		new Thread(new Runnable() {

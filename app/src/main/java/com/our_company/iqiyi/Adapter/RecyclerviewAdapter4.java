@@ -68,8 +68,8 @@ public class RecyclerviewAdapter4 extends RecyclerView.Adapter {
             Glide.with(context).load(movielist.get(position * 2 + 1).getImg()).into(((RecyclerviewAdapter4.ViewHolder) holder).imageView12);
             ((RecyclerviewAdapter4.ViewHolder) holder).textView11.setText(movielist.get(position * 2).getTitle());
             ((RecyclerviewAdapter4.ViewHolder) holder).textView12.setText(movielist.get(position * 2 + 1).getTitle());
-            ((ViewHolder) holder).textViewTag1.setText(" "+Integer.parseInt(movielist.get(position * 2 ).getScore())/60+" '"+Integer.parseInt(movielist.get(position * 2 ).getScore())%60);
-            ((ViewHolder) holder).textViewTag2.setText(" "+Integer.parseInt(movielist.get(position * 2 +1).getScore())/60+" '"+Integer.parseInt(movielist.get(position * 2 +1).getScore())%60);
+            ((ViewHolder) holder).textViewTag1.setText(" "+Integer.parseInt(movielist.get(position * 2 ).getScore())/60+":"+Integer.parseInt(movielist.get(position * 2 ).getScore())%60);
+            ((ViewHolder) holder).textViewTag2.setText(" "+Integer.parseInt(movielist.get(position * 2 +1).getScore())/60+":"+Integer.parseInt(movielist.get(position * 2 +1).getScore())%60);
             RecyclerviewAdapter4.ViewHolder viewHolder = (RecyclerviewAdapter4.ViewHolder) holder;
             viewHolder.cardView11.setOnClickListener(new View.OnClickListener() {
                 @Override

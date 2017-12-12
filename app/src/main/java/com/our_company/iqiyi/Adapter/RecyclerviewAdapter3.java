@@ -51,7 +51,7 @@ public class RecyclerviewAdapter3 extends RecyclerView.Adapter {
         if (holder instanceof ViewHolderHead) {
             Glide.with(context).load(movielist.get(0).getImg()).into(((ViewHolderHead) holder).imageView11);
             ((ViewHolderHead) holder).textView11.setText(movielist.get(0).getTitle());
-            ((ViewHolderHead) holder).textView12.setText(" "+Integer.parseInt(movielist.get(0).getScore())/60+" '"+Integer.parseInt(movielist.get(0).getScore())%60);
+            ((ViewHolderHead) holder).textView12.setText(" "+Integer.parseInt(movielist.get(0).getScore())/60+" :"+Integer.parseInt(movielist.get(0).getScore())%60);
             ViewHolderHead viewHolderHead = (ViewHolderHead) holder;
             viewHolderHead.cardView11.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -67,8 +67,8 @@ public class RecyclerviewAdapter3 extends RecyclerView.Adapter {
             Glide.with(context).load(movielist.get(position * 2 + 1).getImg()).into(((ViewHolder) holder).imageView12);
             ((ViewHolder) holder).textView11.setText(movielist.get(position * 2).getTitle());
             ((ViewHolder) holder).textView12.setText(movielist.get(position * 2 + 1).getTitle());
-            ((ViewHolder) holder).textViewtag1.setText(" "+Integer.parseInt(movielist.get(position * 2 ).getScore())/60+" '"+Integer.parseInt(movielist.get(position * 2 ).getScore())%60);
-            ((ViewHolder) holder).textViewtag2.setText(" "+Integer.parseInt(movielist.get(position * 2+1).getScore())/60+"‘"+Integer.parseInt(movielist.get(position * 2+1).getScore())%60);
+            ((ViewHolder) holder).textViewtag1.setText(" "+Integer.parseInt(movielist.get(position * 2 ).getScore())/60+":"+Integer.parseInt(movielist.get(position * 2 ).getScore())%60);
+            ((ViewHolder) holder).textViewtag2.setText(" "+Integer.parseInt(movielist.get(position * 2+1).getScore())/60+":"+Integer.parseInt(movielist.get(position * 2+1).getScore())%60);
             ViewHolder viewHolder = (ViewHolder) holder;
             viewHolder.cardView11.setOnClickListener(new View.OnClickListener() {
                 @Override
