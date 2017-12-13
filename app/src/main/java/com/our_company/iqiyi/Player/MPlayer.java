@@ -28,6 +28,7 @@ import com.our_company.iqiyi.Remote.RemoteUtil;
 import java.io.File;
 
 import cn.jzvd.JZMediaManager;
+import cn.jzvd.JZUserAction;
 import cn.jzvd.JZVideoPlayerStandard;
 import io.agora.rtc.Constants;
 import io.agora.rtc.RtcEngine;
@@ -47,6 +48,9 @@ public class MPlayer extends JZVideoPlayerStandard implements Runnable,AGEventHa
     private ImageButton draw_cancel, draw_ok, draw_more,play_more, play_draw;
     private static int history = -1;
     private boolean land = true, synced = false, ended = false, running = true, startSync = false, shouldStart = false;
+
+    private MJZAction mAction=new MJZAction();
+    private volatile boolean mBandSync=false;
 
     private boolean seeking = true;
     private boolean performPlay=false;
@@ -116,6 +120,8 @@ public class MPlayer extends JZVideoPlayerStandard implements Runnable,AGEventHa
 
         draw_more.setVisibility(View.GONE);
         new Thread(this).start();
+
+        setJzUserAction(mAction);
 
         //if (User.get() == null)
             //play_more.setVisibility(View.GONE);
@@ -354,15 +360,24 @@ public class MPlayer extends JZVideoPlayerStandard implements Runnable,AGEventHa
                     post(new Runnable() {
                         @Override
                         public void run() {
-                            if (Math.abs(position-getCurrentPositionWhenPlaying())>1000)
-                        {
-                            try {
-                                JZMediaManager.instance().mediaPlayer.seekTo(position);
-                            }catch (Exception e)
+
+                            if (!mBandSync)
+                            {
+                                if (Math.abs(position-getCurrentPositionWhenPlaying())>1000)
+                                {
+                                    try {
+                                        JZMediaManager.instance().mediaPlayer.seekTo(position);
+                                    }catch (Exception e)
+                                    {
+
+                                    }
+                                }
+                            }else
                             {
 
+
                             }
-                        }
+
                         }
                     });
                 }
@@ -549,6 +564,27 @@ public class MPlayer extends JZVideoPlayerStandard implements Runnable,AGEventHa
                     break;
             }
 
+        }
+    }
+
+    private class MJZAction implements JZUserAction
+    {
+
+        @Override
+        public void onEvent(int type, String url, int screen, Object... objects) {
+            if (type==ON_TOUCH_SCREEN_SEEK_POSITION)
+            {
+                mBandSync=true;
+
+                postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        mBandSync=false;
+                        User.get().syncSeek(getCurrentPositionWhenPlaying(),MPlayer.name);
+                    }
+                },500);
+            }
         }
     }
 }

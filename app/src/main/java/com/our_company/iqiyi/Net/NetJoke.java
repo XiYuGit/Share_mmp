@@ -67,9 +67,13 @@ public class NetJoke {
 
                     JSONObject jsonObjectp = jsonObjectContnet.getJSONObject("data");
                     JSONObject jsonObjectImg = jsonObjectp.getJSONObject("cover");
+                    JSONArray jsonObjectUrl = jsonObjectp.getJSONArray("playInfo");
+                    JSONObject jsonObject5 = (JSONObject) jsonObjectUrl.get(0);
+                    //JSONArray jsonArray1 =jsonObject5.getJSONArray("urlList");
 
                     String title = jsonObjectp.getString("title");
-                    String playUrl = jsonObjectp.getString("playUrl");
+                    //String playUrl = jsonObjectp.getString("playUrl");
+                    String playUrl =jsonObject5.getString("url");
                     String time = jsonObjectp.getString("duration");
                     String img = jsonObjectImg.getString("feed");
 

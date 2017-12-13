@@ -63,9 +63,14 @@ public class NetHot {
                      JSONObject jsonObject1 = ((JSONObject) jsonArray.get(i)).getJSONObject("data").getJSONObject("content").getJSONObject("data");
                      JSONObject jsonObject2 = jsonObject1.getJSONObject("cover");
                      JSONObject jsonObject3 = jsonObject1.getJSONObject("consumption");
+                     JSONArray jsonObject4 = jsonObject1.getJSONArray("playInfo");
+                     JSONObject jsonObject5 = (JSONObject) jsonObject4.get(0);
+                     JSONArray jsonArray1 =jsonObject5.getJSONArray("urlList");
+                     JSONObject jsonObject6 = (JSONObject) jsonArray1.get(0);
+
 
                      String title = jsonObject1.getString("title");
-                     String playUrl = jsonObject1.getString("playUrl");
+                     String playUrl = jsonObject5.getString("url");
                      String time = jsonObject1.getString("duration");
                      String img = jsonObject2.getString("feed");
                      String play_num = jsonObject3.getString("collectionCount");
