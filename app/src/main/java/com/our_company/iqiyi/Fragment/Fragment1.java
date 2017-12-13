@@ -67,8 +67,8 @@ public class Fragment1 extends Fragment {
 					Log.e("handlerrrr",hotList.size()+"");
 					if(hotList.size()>4) {
 						for (int i = 0; i < 4; i++) {
-							imgUrl[i] = hotList.get(i).getImg();
-							imgPlayUrl[i] = hotList.get(i).getPlayUrlHigh();
+							imgUrl[i] = hotList.get(hotList.size()-i-4).getImg();
+							imgPlayUrl[i] = hotList.get(hotList.size()-i-4).getPlayUrlHigh();
 						}
 						setImage(imgUrl);
 					}

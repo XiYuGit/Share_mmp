@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="230dp"
@@ -9,19 +10,22 @@
     android:layout_marginRight="16dp"
     android:layout_marginBottom="8dp"
     android:background="#EEE"
+
     >
-<ViewFlipper
-    android:layout_width="match_parent"
-    android:layout_height="180dp"
-    android:id="@+id/vf"
+    <ViewFlipper
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:id="@+id/vf"
     >
 
-</ViewFlipper>
+    </ViewFlipper>
     <LinearLayout
         android:layout_width="100dp"
         android:layout_height="5dp"
+        android:id="@+id/tabLayout"
         android:layout_centerHorizontal="true"
         android:layout_alignBottom="@id/vf"
+        android:background="#20000000"
         >
         <TextView
             android:layout_width="match_parent"
@@ -42,14 +46,58 @@
             android:layout_weight="1"
             android:id="@+id/vftab3"
             />
-
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/vftab4"
+            />
     </LinearLayout>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_alignParentBottom="true"
-        android:background="#ccc"
-        />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tabLayout"
+        android:gravity="center"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:layout_alignParentBottom="true"
+            android:background="#000"
+            />
+        <LinearLayout
+            android:layout_width="140dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            >
+            <ImageView
+                android:layout_marginTop="10dp"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:background="@drawable/orange"
+                android:contentDescription="TODO" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+
+                android:gravity="top"
+                android:textSize="25dp"
+                android:textColor="#000"
+                android:text="每日推荐"
+                />
+            <ImageView
+                android:layout_marginTop="10dp"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:background="@drawable/orange"
+                android:contentDescription="TODO" />
+
+        </LinearLayout>
+    </LinearLayout>
 
 </RelativeLayout>

@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.our_company.iqiyi.Net.Data;
 import com.our_company.iqiyi.Player.VideoActivity;
 import com.our_company.iqiyi.R;
+import com.our_company.iqiyi.Util.RoundImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +59,7 @@ public class RecyclerviewAdapter1_switch extends RecyclerView.Adapter {
                     int position = viewHolderHead.flipper.getDisplayedChild();
                     Log.e("clickkkkkkkk",position+"");
                     Intent intent=new Intent(context, VideoActivity.class);
-                    intent.putExtra("data",datalist.get(position));
+                    intent.putExtra("data",datalist.get(datalist.size()-4-position));
                     context.startActivity(intent);
                 }
             });
@@ -88,6 +89,7 @@ public class RecyclerviewAdapter1_switch extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         Log.e("viewswitch","5");
+        String time;
          Context context =holder.itemView.getContext();
         if(holder instanceof ViewHolderHead){
             for(int i=0;i<4;i++) {
@@ -99,7 +101,12 @@ public class RecyclerviewAdapter1_switch extends RecyclerView.Adapter {
         }else{
             Glide.with(context).load(datalist.get(position).getImg()).into(((ViewHolderBody)holder).imageView);
             ((ViewHolderBody)holder).textViewNum.setText(datalist.get(position).getPlay_num());
-            ((ViewHolderBody)holder).textViewTime.setText(" "+Integer.parseInt(datalist.get(position).getScore())/60+":"+Integer.parseInt(datalist.get(position).getScore())%60);
+            if(Integer.parseInt(datalist.get(position).getScore())%60<10){
+                 time ="#时长 "+Integer.parseInt(datalist.get(position).getScore())/60+":0"+Integer.parseInt(datalist.get(position).getScore())%60;
+            }else{
+                 time ="#时长 "+Integer.parseInt(datalist.get(position).getScore())/60+":"+Integer.parseInt(datalist.get(position).getScore())%60;
+            }
+            ((ViewHolderBody)holder).textViewTime .setText(time);
             ((ViewHolderBody)holder).textViewTitle.setText(datalist.get(position).getTitle());
 
         }
@@ -125,13 +132,13 @@ public class RecyclerviewAdapter1_switch extends RecyclerView.Adapter {
     }
 
     private class ViewHolderBody extends RecyclerView.ViewHolder{
-        private ImageView imageView;
+        private RoundImageView imageView;
         private TextView textViewTime;
         private TextView textViewNum;
         private TextView textViewTitle;
         public ViewHolderBody(View itemView) {
             super(itemView);
-            imageView = (ImageView) itemView.findViewById(R.id.cardIcon);
+            imageView = (RoundImageView) itemView.findViewById(R.id.cardIcon);
             textViewNum = (TextView) itemView.findViewById(R.id.cardScore);
             textViewTime = (TextView) itemView.findViewById(R.id.cardTime);
             textViewTitle = (TextView) itemView.findViewById(R.id.cardTitle);
