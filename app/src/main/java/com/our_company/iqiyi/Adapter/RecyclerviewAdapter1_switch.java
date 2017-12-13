@@ -72,10 +72,12 @@ public class RecyclerviewAdapter1_switch extends RecyclerView.Adapter {
             View view = LayoutInflater.from(context).inflate(R.layout.view1_1_switch,parent,false);
             holder= new ViewHolderBody(view);
             final ViewHolderBody viewHolderBody =new ViewHolderBody(view);
+            final RecyclerView.ViewHolder finalHolder = holder;
             viewHolderBody.imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int position =viewHolderBody.getAdapterPosition();
+                    int position = finalHolder.getAdapterPosition();
+                    Log.e("position",position+"");
                     Intent intent=new Intent(context, VideoActivity.class);
                     intent.putExtra("data",datalist.get(position));
                     context.startActivity(intent);
