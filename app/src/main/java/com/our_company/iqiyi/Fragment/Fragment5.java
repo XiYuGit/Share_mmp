@@ -22,6 +22,8 @@ import com.our_company.iqiyi.R;
 import com.our_company.iqiyi.bean.ThemeInfo;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 /**
