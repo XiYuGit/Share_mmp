@@ -46,7 +46,6 @@ public class NetHot {
                 message.obj=responseData;
                 message.what=1;
                 handler.sendMessage(message);
-
             }
         });
     }
@@ -58,35 +57,40 @@ public class NetHot {
             JSONObject jsonObject =new JSONObject(data);
             JSONArray jsonArray   =jsonObject.getJSONArray("itemList");
              for(int i=2;i<jsonArray.length();i++) {
-                 if (((JSONObject) jsonArray.get(i)).getString("type").length() == 10) {
-                     Data data1 = new Data();
-                     JSONObject jsonObject1 = ((JSONObject) jsonArray.get(i)).getJSONObject("data").getJSONObject("content").getJSONObject("data");
-                     JSONObject jsonObject2 = jsonObject1.getJSONObject("cover");
-                     JSONObject jsonObject3 = jsonObject1.getJSONObject("consumption");
-                     JSONArray jsonObject4 = jsonObject1.getJSONArray("playInfo");
-                     JSONObject jsonObject5 = (JSONObject) jsonObject4.get(0);
-                     JSONArray jsonArray1 =jsonObject5.getJSONArray("urlList");
-                     JSONObject jsonObject6 = (JSONObject) jsonArray1.get(0);
+                 try {
+                     if (((JSONObject) jsonArray.get(i)).getString("type").length() == 10) {
+                         Data data1 = new Data();
+                         JSONObject jsonObject1 = ((JSONObject) jsonArray.get(i)).getJSONObject("data").getJSONObject("content").getJSONObject("data");
+                         JSONObject jsonObject2 = jsonObject1.getJSONObject("cover");
+                         JSONObject jsonObject3 = jsonObject1.getJSONObject("consumption");
+                         JSONArray jsonObject4 = jsonObject1.getJSONArray("playInfo");
+                         JSONObject jsonObject5 = (JSONObject) jsonObject4.get(0);
+                         JSONArray jsonArray1 = jsonObject5.getJSONArray("urlList");
+                         JSONObject jsonObject6 = (JSONObject) jsonArray1.get(0);
 
 
-                     String title = jsonObject1.getString("title");
-                     String playUrl = jsonObject5.getString("url");
-                     String time = jsonObject1.getString("duration");
-                     String img = jsonObject2.getString("feed");
-                     String play_num = jsonObject3.getString("collectionCount");
+                         String title = jsonObject1.getString("title");
+                         String playUrl = jsonObject5.getString("url");
+                         String time = jsonObject1.getString("duration");
+                         String img = jsonObject2.getString("feed");
+                         String play_num = jsonObject3.getString("collectionCount");
 
-                     Log.e("viewswitch", "josns2");
+                         Log.e("viewswitch", "josns2");
 
-                     data1.setTitle(title);
-                     data1.setImg(img);
-                     data1.setPlayUrlLow(playUrl);
-                     data1.setPlayUrlNormal(playUrl);
-                     data1.setPlayUrlHigh(playUrl);
-                     data1.setNum(time);
-                     data1.setScore(time);
-                     data1.setPlay_num(play_num);
+                         data1.setTitle(title);
+                         data1.setImg(img);
+                         data1.setPlayUrlLow(playUrl);
+                         data1.setPlayUrlNormal(playUrl);
+                         data1.setPlayUrlHigh(playUrl);
+                         data1.setNum(time);
+                         data1.setScore(time);
+                         data1.setPlay_num(play_num);
 
-                     datas.add(data1);
+                         datas.add(data1);
+                     }
+                 }catch (JSONException e)
+                 {
+
                  }
              }
         }catch(JSONException e){
