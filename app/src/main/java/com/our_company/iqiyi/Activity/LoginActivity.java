@@ -142,7 +142,7 @@ public class LoginActivity extends Activity {
 
     private void setRemoteControlListener()
     {
-        HashMap
+
         User.get().addOnRequestControlListener(new User.OnRequestControlListener() {
             @Override
             public void onRequest(String name) {
