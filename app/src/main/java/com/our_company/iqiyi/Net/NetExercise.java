@@ -61,34 +61,37 @@ public class NetExercise {
             JSONObject jsonObject=new JSONObject(data);
             JSONArray itemList=jsonObject.getJSONArray("itemList");
             for(int i=1;i<itemList.length();i++){
-                Data  data1 =new Data();
-                JSONObject jsonObjectContnet= ((JSONObject) itemList.get(i)).getJSONObject("data").getJSONObject("content");
+                try {
+                    Data data1 = new Data();
+                    JSONObject jsonObjectContnet = ((JSONObject) itemList.get(i)).getJSONObject("data").getJSONObject("content");
 
-                JSONObject jsonObjectp =jsonObjectContnet.getJSONObject("data");
-                JSONObject jsonObjectImg=jsonObjectp.getJSONObject("cover");
-                JSONArray jsonObjectUrl = jsonObjectp.getJSONArray("playInfo");
-                JSONObject jsonObject5 = (JSONObject) jsonObjectUrl.get(0);
-                //JSONArray jsonArray1 =jsonObject5.getJSONArray("urlList");
+                    JSONObject jsonObjectp = jsonObjectContnet.getJSONObject("data");
+                    JSONObject jsonObjectImg = jsonObjectp.getJSONObject("cover");
+                    JSONArray jsonObjectUrl = jsonObjectp.getJSONArray("playInfo");
+                    JSONObject jsonObject5 = (JSONObject) jsonObjectUrl.get(0);
+                    //JSONArray jsonArray1 =jsonObject5.getJSONArray("urlList");
 
-                String title =jsonObjectp.getString("title");
-              //  String playUrl=jsonObjectp.getString("playUrl");
-                String playUrl =jsonObject5.getString("url");
-                String time =jsonObjectp.getString("duration");
-                String img =jsonObjectImg.getString("feed");
+                    String title = jsonObjectp.getString("title");
+                    //  String playUrl=jsonObjectp.getString("playUrl");
+                    String playUrl = jsonObject5.getString("url");
+                    String time = jsonObjectp.getString("duration");
+                    String img = jsonObjectImg.getString("feed");
 
-                Log.e("eeeeeeeeeee",title);
+                    Log.e("eeeeeeeeeee", title);
 
-                data1.setTitle(title);
-                data1.setImg(img);
-                data1.setPlayUrlLow(playUrl);
-                data1.setPlayUrlNormal(playUrl);
-                data1.setPlayUrlHigh(playUrl);
-                data1.setNum(time);
-                data1.setScore(time);
-                data1.setPlay_num(time);
+                    data1.setTitle(title);
+                    data1.setImg(img);
+                    data1.setPlayUrlLow(playUrl);
+                    data1.setPlayUrlNormal(playUrl);
+                    data1.setPlayUrlHigh(playUrl);
+                    data1.setNum(time);
+                    data1.setScore(time);
+                    data1.setPlay_num(time);
 
-                datas.add(data1);
+                    datas.add(data1);
+                }catch(JSONException e){
 
+                }
             }
         } catch (JSONException e) {
             e.printStackTrace();
