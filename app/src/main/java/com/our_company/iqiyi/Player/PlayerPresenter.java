@@ -707,7 +707,9 @@ public class PlayerPresenter implements PlaybackControlView.VisibilityListener,V
         if (mBandSync)
         {
             mBandSync=false;
-            User.get().syncSeek((int)mPlayer.getCurrentPosition(),name);
+
+            if (synced)
+                User.get().syncSeek((int)mPlayer.getCurrentPosition(),name);
         }
     }
 
