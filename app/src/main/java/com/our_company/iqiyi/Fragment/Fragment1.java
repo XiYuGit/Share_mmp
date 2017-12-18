@@ -66,7 +66,8 @@ public class Fragment1 extends Fragment {
 					hotList=NetHot.parseData(responseData,Data.GET_RECOMMEND);
 					Log.e("handlerrrr",hotList.size()+"");
 					if(hotList.size()>4) {
-						for (int i = 0; i < 4; i++) {
+						int n=hotList.size()-4<4?hotList .size()-4:4;
+						for (int i = 0; i < n; i++) {
 							imgUrl[i] = hotList.get(hotList.size()-i-4).getImg();
 							imgPlayUrl[i] = hotList.get(hotList.size()-i-4).getPlayUrlHigh();
 						}

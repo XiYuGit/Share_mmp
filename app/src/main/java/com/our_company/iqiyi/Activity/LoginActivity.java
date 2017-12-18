@@ -28,6 +28,7 @@ import com.our_company.iqiyi.Util.LoginUtil;
 import com.our_company.iqiyi.bean.ThemeInfo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import xiyou.mobile.User;
 
@@ -141,7 +142,7 @@ public class LoginActivity extends Activity {
 
     private void setRemoteControlListener()
     {
-
+        HashMap
         User.get().addOnRequestControlListener(new User.OnRequestControlListener() {
             @Override
             public void onRequest(String name) {
