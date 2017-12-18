@@ -702,20 +702,27 @@ public class PlayerPresenter implements PlaybackControlView.VisibilityListener,V
                                     User.get().syncSeek(0,name);
                                 }
                             }.start();
-//                            if (!mPlayer.getPlayWhenReady())
-//                            {
-//                                mPlayer.setPlayWhenReady(true);
-//                            }
                         }else
                         {
-                            if (!mPlayer.getPlayWhenReady())
+                            if (!b)
                             {
+                                //暂停
+                                new Thread(){
+                                    @Override
+                                    public void run() {
+                                        super.run();
+                                        User.get().startpause(name);
+                                    }
+                                }.start();
+                            }else
+                            {
+                                //播放
                                 new Thread()
                                 {
                                     @Override
                                     public void run() {
                                         super.run();
-                                        User.get().startpause(name);
+                                        User.get().syncSeek((int)mPlayer.getCurrentPosition(),name);
                                     }
                                 }.start();
                             }
