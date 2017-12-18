@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.exoplayer2.DefaultRenderersFactory;
@@ -90,6 +91,7 @@ public class PlayerPresenter implements PlaybackControlView.VisibilityListener,V
     public DrawView dv;
     private ImageButton draw_cancel, draw_ok, draw_more,play_more, play_draw,finish;
     private View fastForward,rewind;
+    private ProgressBar mLoadingView;
     private TimeBar timebar;
 
     private volatile boolean mBandSync=false;
@@ -151,6 +153,7 @@ public class PlayerPresenter implements PlaybackControlView.VisibilityListener,V
         finish=(ImageButton)v.findViewById(R.id.back_pl2);
         play_more = (ImageButton) v.findViewById(R.id.play_more);
         play_draw = (ImageButton)v.findViewById(R.id.play_draw);
+        mLoadingView=(ProgressBar)v.findViewById(R.id.player_loading);
         draw_cancel.setOnClickListener(this);
         draw_ok.setOnClickListener(this);
         draw_more.setOnClickListener(this);
@@ -731,6 +734,15 @@ public class PlayerPresenter implements PlaybackControlView.VisibilityListener,V
                 }
             }
         }
+
+        if (i==Player.STATE_BUFFERING)
+        {
+            mLoadingView.setVisibility(View.VISIBLE);
+        }else
+        {
+            mLoadingView.setVisibility(View.GONE);
+        }
+
     }
 
     @Override
