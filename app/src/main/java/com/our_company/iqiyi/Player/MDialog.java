@@ -33,7 +33,7 @@ import xiyou.mobile.User;
 
 public class MDialog extends Dialog {
 
-    private MPlayer cv;
+    private PlayerPresenter cv;
     private ViewPager vp;
     private TextView title1,title2;
     private static User.OnPermitSyncListener syncl=null;
@@ -43,7 +43,7 @@ public class MDialog extends Dialog {
 
     private H mh=new H();
 
-    public MDialog(Context context, MPlayer v) {
+    public MDialog(Context context, PlayerPresenter v) {
         super(context, R.style.MDialog);
         this.cv=v;
         WindowManager.LayoutParams lp=getWindow().getAttributes();
@@ -57,7 +57,7 @@ public class MDialog extends Dialog {
     public void removeAllListener()
     {
         if (syncl!=null)
-        User.get().removeOnPermitSyncListener(syncl);
+            User.get().removeOnPermitSyncListener(syncl);
 
         if (rsyncl!=null)
             User.get().removeOnRefusedSyncListener(rsyncl);
@@ -91,13 +91,13 @@ public class MDialog extends Dialog {
                 }
             });
         }
-            new Thread()
-            {
-                @Override
-                public void run() {
+        new Thread()
+        {
+            @Override
+            public void run() {
 
-                }
-            }.start();
+            }
+        }.start();
     }
 
     @Override
@@ -303,13 +303,13 @@ public class MDialog extends Dialog {
     public static void cancelHuanchong()
     {
         if (huanchongD!=null)
-        huanchongD.cancel();
+            huanchongD.cancel();
     }
 
     public static void dismissHuanchong()
     {
         if (huanchongD!=null)
-        huanchongD.dismiss();
+            huanchongD.dismiss();
     }
 
 

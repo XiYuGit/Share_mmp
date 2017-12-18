@@ -178,7 +178,7 @@ public class ShareService extends Service {
                 case STARTACTIVITY:
                     i.putExtra("name",name);
                     Data d=new Data("","","","",data);
-                    d.setPlayUrlHigh(data);
+                    d.setPlayUrlLow(data);
                     i.putExtra("data",d);
                     i.putExtra("width",w);
                     i.putExtra("height",h);

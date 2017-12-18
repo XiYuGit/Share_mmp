@@ -73,13 +73,13 @@ public class MPlayer extends JZVideoPlayerStandard implements Runnable,AGEventHa
 
     public MPlayer(Context context) {
         super(context);
-        mdialog = new MDialog(context, this);
+        //mdialog = new MDialog(context, this);
         Log.e("xx","init");
     }
 
     public MPlayer(Context context, AttributeSet attrs) {
         super(context, attrs);
-        mdialog = new MDialog(context, this);
+        //mdialog = new MDialog(context, this);
         Log.e("xx","init");
     }
 
@@ -124,7 +124,7 @@ public class MPlayer extends JZVideoPlayerStandard implements Runnable,AGEventHa
         setJzUserAction(mAction);
 
         //if (User.get() == null)
-            //play_more.setVisibility(View.GONE);
+        //play_more.setVisibility(View.GONE);
 
 //        MDialog.showHuanchong(c, new DialogInterface.OnCancelListener() {
 //            @Override
@@ -357,30 +357,30 @@ public class MPlayer extends JZVideoPlayerStandard implements Runnable,AGEventHa
             @Override
             public void onSeek(final int position, String name) {
 
-                    post(new Runnable() {
-                        @Override
-                        public void run() {
+                post(new Runnable() {
+                    @Override
+                    public void run() {
 
-                            if (!mBandSync)
+                        if (!mBandSync)
+                        {
+                            if (Math.abs(position-getCurrentPositionWhenPlaying())>1000)
                             {
-                                if (Math.abs(position-getCurrentPositionWhenPlaying())>1000)
+                                try {
+                                    JZMediaManager.instance().mediaPlayer.seekTo(position);
+                                }catch (Exception e)
                                 {
-                                    try {
-                                        JZMediaManager.instance().mediaPlayer.seekTo(position);
-                                    }catch (Exception e)
-                                    {
 
-                                    }
                                 }
-                            }else
-                            {
-
-
                             }
+                        }else
+                        {
+
 
                         }
-                    });
-                }
+
+                    }
+                });
+            }
         });
         if (spl!=null)
             User.get().removeOnStartPauseListener(spl);

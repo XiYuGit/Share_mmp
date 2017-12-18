@@ -28,6 +28,7 @@ public class DrawView extends View{
     private String name=null;
     private int sw, sh,w,h;
     private boolean synced=false;
+    private boolean touchable=false;
 
     private User.OnActionListener actionl;
     private User.OnClearScreenListener clearl;
@@ -48,6 +49,11 @@ public class DrawView extends View{
     {
         color=c;
         p.setColor(c);
+    }
+
+    public void setTouchable(boolean touch)
+    {
+        touchable=touch;
     }
 
     public void removeAllListener()
@@ -143,7 +149,7 @@ public class DrawView extends View{
 
 
         for (int i=0;i<paths.size();i++)
-           c.drawPath(paths.get(i),p);
+            c.drawPath(paths.get(i),p);
 
         for (int i=0;i<rpaths.size();i++)
             c.drawPath(rpaths.get(i),p);
@@ -151,6 +157,11 @@ public class DrawView extends View{
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
+        if (!touchable)
+        {
+            return false;
+        }
+
         //if (synced)
         //    return false;
         switch (motionEvent.getAction())

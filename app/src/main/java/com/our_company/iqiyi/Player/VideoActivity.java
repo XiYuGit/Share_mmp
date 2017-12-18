@@ -24,16 +24,15 @@ import static android.content.res.Configuration.ORIENTATION_LANDSCAPE;
 
 public class VideoActivity extends AppCompatActivity {
 
-    private MPlayer qv;
-    private Button send,get;
     private String playSouce="http://i.snssdk.com/neihan/video/playback/?video_id=361b1c3b0c8642a5a1f77c0eb5acf08e&quality=480p&line=0&is_gif=0.mp4",title;
-    private boolean synced=false;
     private Data data;
+
+    private PlayerPresenter mPresenter=new PlayerPresenter();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.playlayout);
+        setContentView(R.layout.playlayout2);
         ShareService.activityContext=this;
         startService(new Intent(this,ShareService.class));
         data=(Data)getIntent().getSerializableExtra("data");
@@ -60,24 +59,7 @@ public class VideoActivity extends AppCompatActivity {
                 }.start();
             }
         }
-        //playSouce=data.getTv_id();
-
-        qv=(MPlayer)findViewById(R.id.player);
-        /*int w=((WindowManager)getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getWidth();
-        int h=w*9/16;
-        if (w>((WindowManager)getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getHeight())
-            h=((WindowManager)getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getHeight();
-
-        qv.setLayoutParams(new RelativeLayout.LayoutParams(w,h));
-        cv.setLayoutParams(new RelativeLayout.LayoutParams(w,h));*/
-        qv.setSource(data.getPlayUrlLow(),data.getTitle());
-        qv.switchScreen(true);
-        //qv.startWindowFullscreen();
-        //title=data.getTitle();
-        //if (data!=null)
-        //(data.getTitle());
-
-        //
+        mPresenter.init(getWindow().getDecorView(),data,this);
     }
 
     private void solveIntent(int w,int h)
@@ -86,42 +68,33 @@ public class VideoActivity extends AppCompatActivity {
         {
             int sw=getIntent().getIntExtra("width",w);
             int sh=getIntent().getIntExtra("height",h);
-            Log.e("xx","sizeset"+sw+":"+sh);
-            qv.enableSync(w,h,sw,sh,getIntent().getStringExtra("name"),true);
+
+            mPresenter.enableSync(w,h,sw,sh,getIntent().getStringExtra("name"),true);
         }
     }
 
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        qv=(MPlayer)findViewById(R.id.player);
-        qv.setSource(data.getPlayUrlHigh(),data.getTitle());
+        super.onConfigurationChanged(newConfig);WindowManager.LayoutParams params = getWindow().getAttributes();
+        params.flags |= WindowManager.LayoutParams.FLAG_FULLSCREEN;
+        getWindow().setAttributes(params);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
-//        setContentView(R.layout.playlayout);
-//
-//        qv=(MPlayer)findViewById(R.id.player);
+
+        //qv=(MPlayer)findViewById(R.id.player);
+        //qv.setSource(data.getPlayUrlHigh(),data.getTitle());
         int w=((WindowManager)getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getWidth();
-        int h=w*9/16;
-//
-        if (newConfig.orientation==ORIENTATION_LANDSCAPE) {
-            h = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getHeight();
-        }
-//
-//        cv.switchScreen(newConfig.orientation==ORIENTATION_LANDSCAPE);
-//        qv.setLayoutParams(new RelativeLayout.LayoutParams(w,h));
-//        cv.setLayoutParams(new RelativeLayout.LayoutParams(w,h));
+        int h=((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getHeight();;
+
         if (newConfig.orientation==ORIENTATION_LANDSCAPE)
             solveIntent(w,h);
-//        cv.setQiyi(qv);
-//        cv.setSource(playSouce);
-//        cv.setTitle(title);
 
     }
 
     @Override
     protected void onDestroy() {
-        qv.quitSync();
+        mPresenter.quitSync();
         super.onDestroy();
         if(RemoteUtil.socketClient!=null)
         {
@@ -147,26 +120,28 @@ public class VideoActivity extends AppCompatActivity {
 
             }
         }
-        //qv.release();
+        mPresenter.release();
     }
 
     @Override
     public void onBackPressed() {
-        if (JZVideoPlayer.backPress()) {
-            //return;
-        }
+//        if (JZVideoPlayer.backPress()) {
+//            //return;
+//        }
         super.onBackPressed();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        JZVideoPlayer.releaseAllVideos();
+        mPresenter.onPause();
+//        JZVideoPlayer.releaseAllVideos();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        mPresenter.onResume();
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         ShareService.activityContext=this;
         RemoteUtil.clientWindow=getWindow();
