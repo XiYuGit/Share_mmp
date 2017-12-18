@@ -542,12 +542,12 @@ public class PlayerPresenter implements PlaybackControlView.VisibilityListener,V
                         {
                             if (mPlayer.getPlayWhenReady())
                             {
-                                mView.post(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        User.get().syncSeek((int)mPlayer.getCurrentPosition(),name);
-                                    }
-                                });
+                                User.get().syncSeek((int)mPlayer.getCurrentPosition(),name);
+//                                mView.post(new Runnable() {
+//                                    @Override
+//                                    public void run() {
+//                                    }
+//                                });
                             }
                         }
 
@@ -598,7 +598,14 @@ public class PlayerPresenter implements PlaybackControlView.VisibilityListener,V
                         if (!mLoaded)
                         {
                             mLoaded=true;
-                            User.get().syncSeek(0,name);
+                            new Thread()
+                            {
+                                @Override
+                                public void run() {
+                                    super.run();
+                                    User.get().syncSeek(0,name);
+                                }
+                            }.start();
                         }
                     }
                 }else
@@ -620,11 +627,24 @@ public class PlayerPresenter implements PlaybackControlView.VisibilityListener,V
                             if (!b)
                             {
                                 //暂停
-                                User.get().startpause(name);
+                                new Thread(){
+                                    @Override
+                                    public void run() {
+                                        super.run();
+                                        User.get().startpause(name);
+                                    }
+                                }.start();
                             }else
                             {
                                 //播放
-                                User.get().syncSeek((int)mPlayer.getCurrentPosition(),name);
+                                new Thread()
+                                {
+                                    @Override
+                                    public void run() {
+                                        super.run();
+                                        User.get().syncSeek((int)mPlayer.getCurrentPosition(),name);
+                                    }
+                                }.start();
                             }
                         }
                     }
@@ -638,7 +658,14 @@ public class PlayerPresenter implements PlaybackControlView.VisibilityListener,V
                     if (i==Player.STATE_READY)
                     {
                         //告诉对方缓冲好了，暂停播放
-                        User.get().syncSeek(0,name);
+                        new Thread()
+                        {
+                            @Override
+                            public void run() {
+                                super.run();
+                                User.get().syncSeek(0,name);
+                            }
+                        }.start();
                         if (mPlayer.getPlayWhenReady())
                         {
                             mPlayer.setPlayWhenReady(false);
@@ -647,7 +674,14 @@ public class PlayerPresenter implements PlaybackControlView.VisibilityListener,V
                         if (!mLoaded)
                         {
                             mLoaded=true;
-                            User.get().syncSeek(0,name);
+                            new Thread()
+                            {
+                                @Override
+                                public void run() {
+                                    super.run();
+                                    User.get().syncSeek(0,name);
+                                }
+                            }.start();
                         }
                     }
                 }else
@@ -660,7 +694,14 @@ public class PlayerPresenter implements PlaybackControlView.VisibilityListener,V
                             //刚刚缓存好
                             //告诉对方缓冲好了,开始播放
                             mLoaded=true;
-                            User.get().syncSeek(0,name);
+                            new Thread()
+                            {
+                                @Override
+                                public void run() {
+                                    super.run();
+                                    User.get().syncSeek(0,name);
+                                }
+                            }.start();
 //                            if (!mPlayer.getPlayWhenReady())
 //                            {
 //                                mPlayer.setPlayWhenReady(true);
@@ -669,7 +710,14 @@ public class PlayerPresenter implements PlaybackControlView.VisibilityListener,V
                         {
                             if (!mPlayer.getPlayWhenReady())
                             {
-                                User.get().startpause(name);
+                                new Thread()
+                                {
+                                    @Override
+                                    public void run() {
+                                        super.run();
+                                        User.get().startpause(name);
+                                    }
+                                }.start();
                             }
                         }
                     }
@@ -709,7 +757,14 @@ public class PlayerPresenter implements PlaybackControlView.VisibilityListener,V
             mBandSync=false;
 
             if (synced)
-                User.get().syncSeek((int)mPlayer.getCurrentPosition(),name);
+                new Thread()
+                {
+                    @Override
+                    public void run() {
+                        super.run();
+                        User.get().syncSeek((int)mPlayer.getCurrentPosition(),name);
+                    }
+                }.start();
         }
     }
 
