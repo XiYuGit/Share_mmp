@@ -88,7 +88,6 @@ public class NetJoke {
                         data1.setPlay_num(time);
                         datas.add(data1);
                     }catch(JSONException e) {
-
                     }
                 }
             }
