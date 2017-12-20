@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.our_company.iqiyi.bean.ThemeInfo;
+
 import java.util.ArrayList;
 
 import xiyou.mobile.BridgeNative;
@@ -146,7 +148,10 @@ public class DrawView extends View{
     @Override
     protected void onDraw(Canvas c) {
         super.onDraw(c);
-
+        if (ThemeInfo.getThemeInfo().getPrimaryColor()!=color)
+        {
+            setColor(ThemeInfo.getThemeInfo().getPrimaryColor());
+        }
 
         for (int i=0;i<paths.size();i++)
             c.drawPath(paths.get(i),p);
