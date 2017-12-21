@@ -17,7 +17,6 @@ import com.our_company.xymobile.R;
  */
 
 public class About extends AppCompatActivity {
-
     private WebView webview;
     private ProgressBar bar;
 
@@ -39,7 +38,6 @@ public class About extends AppCompatActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-
         if ((keyCode == KeyEvent.KEYCODE_BACK) && webview.canGoBack()) {
             webview.goBack(); //goBack()表示返回WebView的上一页面
             return true;
