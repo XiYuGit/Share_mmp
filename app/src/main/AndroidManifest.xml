@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.our_company.iqiyi">
+    package="com.our_company.xymobile">
     <!--网络访问需要的权限-->
     <uses-permission android:name="android.permission.INTERNET" />
     <!--获取手机IMEI号需要的权限-->
@@ -24,45 +24,45 @@
         android:allowBackup="true"
         android:icon="@mipmap/share"
         android:label="@string/app_name"
-        android:name=".Player.App"
+        android:name="com.our_company.xymobile.Player.App"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         >
-        <activity android:name=".Main"
+        <activity android:name="com.our_company.xymobile.Main"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Personal.My.My_set"></activity>
-        <activity android:name=".Personal.MyContent.Help"></activity>
-        <activity android:name=".Personal.MyContent.MyBuy"></activity>
-        <activity android:name=".Personal.MyContent.MyMoney"></activity>
-        <activity android:name=".Personal.MyContent.MySend"></activity>
-        <activity android:name=".Personal.MyContent.MySave"></activity>
-        <activity android:name=".Activity.About"></activity>
-        <activity android:name=".Personal.MyContent.ReducePaper"></activity>
-        <activity android:name=".Personal.MyContent.MySold"></activity>
-        <activity android:name=".Remote.MasterActivity"
+        <activity android:name="com.our_company.xymobile.Personal.My.My_set"></activity>
+        <activity android:name="com.our_company.xymobile.Personal.MyContent.Help"></activity>
+        <activity android:name="com.our_company.xymobile.Personal.MyContent.MyBuy"></activity>
+        <activity android:name="com.our_company.xymobile.Personal.MyContent.MyMoney"></activity>
+        <activity android:name="com.our_company.xymobile.Personal.MyContent.MySend"></activity>
+        <activity android:name="com.our_company.xymobile.Personal.MyContent.MySave"></activity>
+        <activity android:name="com.our_company.xymobile.Activity.About"></activity>
+        <activity android:name="com.our_company.xymobile.Personal.MyContent.ReducePaper"></activity>
+        <activity android:name="com.our_company.xymobile.Personal.MyContent.MySold"></activity>
+        <activity android:name="com.our_company.xymobile.Remote.MasterActivity"
             android:screenOrientation="landscape"
             android:configChanges="orientation|screenSize">
 
         </activity>
-        <activity android:name=".Personal.MyContent.SalePaper"></activity>
-        <activity android:name=".Personal.MyContent.MyTalk"></activity>
-        <activity android:name=".Activity.LoginActivity"></activity>
-        <activity android:name=".Activity.RegisterActivity"></activity>
-        <activity android:name=".Activity.Search"/>
-       <activity android:name=".Player.VideoActivity"
+        <activity android:name="com.our_company.xymobile.Personal.MyContent.SalePaper"></activity>
+        <activity android:name="com.our_company.xymobile.Personal.MyContent.MyTalk"></activity>
+        <activity android:name="com.our_company.xymobile.Activity.LoginActivity"></activity>
+        <activity android:name="com.our_company.xymobile.Activity.RegisterActivity"></activity>
+        <activity android:name="com.our_company.xymobile.Activity.Search"/>
+       <activity android:name="com.our_company.xymobile.Player.VideoActivity"
            android:configChanges="orientation|screenSize">
        </activity>
 
         <!--好友服务-->
-        <service android:name=".Service.FriendService"></service>
+        <service android:name="com.our_company.xymobile.Service.FriendService"></service>
         <!--远程协助服务-->
-        <service android:name=".Remote.RemoteService"></service>
-       <service android:name=".Player.ShareService"></service>
+        <service android:name="com.our_company.xymobile.Remote.RemoteService"></service>
+       <service android:name="com.our_company.xymobile.Player.ShareService"></service>
     </application>
 
 </manifest>

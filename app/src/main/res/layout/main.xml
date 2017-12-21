@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.our_company.iqiyi.Main"
+    tools:context="com.our_company.xymobile.Main"
     >
 
 
@@ -31,7 +31,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <com.our_company.iqiyi.View.DecoratorViewPager
+    <com.our_company.xymobile.View.DecoratorViewPager
         android:layout_width="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_height="match_parent"
