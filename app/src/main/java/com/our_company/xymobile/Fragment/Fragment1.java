@@ -16,7 +16,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
-import com.our_company.xymobile.Adapter.RecyclerviewAdapter1;
 import com.our_company.xymobile.Adapter.RecyclerviewAdapter1_switch;
 import com.our_company.xymobile.Net.Data;
 import com.our_company.xymobile.Net.NetHot;
