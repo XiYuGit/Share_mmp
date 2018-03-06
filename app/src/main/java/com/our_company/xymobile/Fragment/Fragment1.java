@@ -31,7 +31,7 @@ import java.util.List;
 
 public class Fragment1 extends Fragment {
 	private View view;
-	private List <RecyclerviewAdapter1> recyclerviewAdapter1List=new ArrayList<>();
+	//private List <RecyclerviewAdapter1> recyclerviewAdapter1List=new ArrayList<>();
 	private Context context;
 	private Bitmap[] bm=new Bitmap[5];
 	private String[] imgUrl= new String[6];
@@ -68,22 +68,8 @@ public class Fragment1 extends Fragment {
 						}
 						setImage(imgUrl);
 					}
-//					petList=NetCate.parseData(responseData,Data.GET_RECOMMEND);
 					break;
-//				case 2:
-//					exerciseList=NetCate.parseData(responseData,Data.GET_RECOMMEND);
-//					break;
-//				case 3:
-//					fashionList=NetCate.parseData(responseData,Data.GET_RECOMMEND);
-//					break;
-//				case 4:
-//					cateList=NetCate.parseData(responseData,Data.GET_RECOMMEND);
-//					break;
 			}
-//			if(cateList.size()!=0&&exerciseList.size()!=0 &&fashionList.size()!=0&&petList.size()!=0)
-//			{
-//				setImage(imgUrl);
-//			}
 		}
 	};
 	public Handler handler1=new Handler(){
@@ -119,21 +105,6 @@ public class Fragment1 extends Fragment {
 		NetHot netHot =new NetHot();
 		netHot.setHandler(handler);
 		netHot.getNet();
-
-		//netFirst.setHandler(handler);	//数据写死
-		//netFirst.getNet();
-
-//		NetExercise net_exercise =new NetExercise();
-//		net_exercise.setHandler(handler);
-//		net_exercise.getNet();
-//
-//		NetFashion net_fashion =new NetFashion();
-//		net_fashion.setHandler(handler);
-//		net_fashion.getNet();
-//
-//		NetCate net_cate =new NetCate();
-//		net_cate.setHandler(handler);
-//		net_cate.getNet();
 	}
 
 	void  init(){
