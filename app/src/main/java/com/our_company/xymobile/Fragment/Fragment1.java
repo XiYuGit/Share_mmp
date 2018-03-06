@@ -113,9 +113,6 @@ public class Fragment1 extends Fragment {
 
 		LinearLayoutManager layoutManager=new LinearLayoutManager(getContext());
 		recyclerView.setLayoutManager(layoutManager);
-
-//		RecyclerviewAdapter1 recyclerviewAdapter1=new RecyclerviewAdapter1(bm,fashionList,exerciseList,petList,cateList);
-//		recyclerView.setAdapter(recyclerviewAdapter1);
 		RecyclerviewAdapter1_switch recyclerviewAdapter1=new RecyclerviewAdapter1_switch(bm,hotList,exerciseList,petList,cateList);
 		recyclerView.setAdapter(recyclerviewAdapter1);
 
