@@ -25,6 +25,10 @@ import com.our_company.xymobile.Service.FriendService;
 import com.our_company.xymobile.Util.LoginUtil;
 import com.our_company.xymobile.bean.ThemeInfo;
 
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import xiyou.mobile.User;
 
 import static com.our_company.xymobile.Util.LoginUtil.notifyLogin;
@@ -70,6 +74,9 @@ public class LoginActivity extends Activity {
                         notifyLogin();
                         ShareService.notifyLoged();
                         LoginActivity.this.finish();
+                        if(passWord.getText().toString()!=null) {
+                            save(passWord.getText().toString());
+                        }
                         break;
                     case 3:
                         Toast.makeText(LoginActivity.this, "此账号已登录！", Toast.LENGTH_SHORT).show();
@@ -227,5 +234,39 @@ public class LoginActivity extends Activity {
 
         return super.onKeyDown(keyCode, event);
 
+    }
+    void save(String password){
+
+    }
+    static String getMd5(String s){
+        String str="";
+        try {
+            MessageDigest messageDigest = MessageDigest.getInstance("MD5");
+            byte [] messageByte=s.getBytes("UTF-8");
+            byte [] md5Byte=messageDigest.digest(messageByte);
+            str=bytestoHex(md5Byte);
+
+
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return str;
+    }
+    static String bytestoHex(byte[]bytes){
+        StringBuffer hexStr= new StringBuffer();
+        int num;
+        for(int i=0;i<bytes.length;i++){
+            num=bytes[i];
+            if(num<0){
+                num+=256;
+            }
+            if(num<16){
+                hexStr.append(0);
+            }
+            hexStr.append(Integer.toHexString(num));
+        }
+        return hexStr.toString().toUpperCase();
     }
 }

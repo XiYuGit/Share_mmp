@@ -1,6 +1,4 @@
 package com.our_company.xymobile.Fragment;
-
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -72,16 +70,15 @@ public class Fragment1 extends Fragment {
 			}
 		}
 	};
+
 	public Handler handler1=new Handler(){
 		@Override
 		public void handleMessage(Message msg) {
-			Log.e("views","end2");
 			init();
 		}
 	};
-	public Fragment1(){
 
-	}
+	public Fragment1(){}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -90,7 +87,6 @@ public class Fragment1 extends Fragment {
 			progressBar= (ProgressBar) view.findViewById(R.id.progressBar);
 			if(progressBar.getVisibility()==View.GONE) progressBar.setVisibility(View.VISIBLE);
 			getInfo();
-			//init();
 		} else {
 			ViewGroup viewGroup = (ViewGroup) parentView.getParent();
 			if (viewGroup != null)
@@ -100,24 +96,18 @@ public class Fragment1 extends Fragment {
 	}
 
 	private void getInfo(){
-
-
 		NetHot netHot =new NetHot();
 		netHot.setHandler(handler);
 		netHot.getNet();
 	}
 
 	void  init(){
-
 		RecyclerView recyclerView= (RecyclerView) view.findViewById(R.id.rcv);
-
 		LinearLayoutManager layoutManager=new LinearLayoutManager(getContext());
 		recyclerView.setLayoutManager(layoutManager);
 		RecyclerviewAdapter1_switch recyclerviewAdapter1=new RecyclerviewAdapter1_switch(bm,hotList,exerciseList,petList,cateList);
 		recyclerView.setAdapter(recyclerviewAdapter1);
-
 		progressBar.setVisibility(View.GONE);
-
 	}
 
 	public void setImage(final String [] imgUrl){
@@ -149,7 +139,5 @@ public class Fragment1 extends Fragment {
 				}
 			}
 		}).start();
-
 	}
-
 }
