@@ -54,7 +54,6 @@ public class RegisterActivity extends Activity {
                         RegisterActivity.this.finish();
                         break;
                     case 2:
-
                         break;
                 }
             }
@@ -68,11 +67,9 @@ public class RegisterActivity extends Activity {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 final String stringUserName=userName.getText().toString();
                 final String stringPassWord=passWord.getText().toString();
                 final String stringNickName=userNickName.getText().toString();
-
                 if(stringNickName.equals("")||stringPassWord.equals("")||stringUserName.equals(""))
                 {
                     return;
@@ -95,8 +92,6 @@ public class RegisterActivity extends Activity {
                         User.register(stringUserName,stringPassWord,stringNickName);
                         message.what=1;
                         handler.sendMessage(message);
-
-
                     }
                 }.start();
 
