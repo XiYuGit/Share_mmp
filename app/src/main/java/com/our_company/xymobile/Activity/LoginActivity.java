@@ -66,18 +66,13 @@ public class LoginActivity extends Activity {
                         Toast.makeText(LoginActivity.this,"账号或密码错误",Toast.LENGTH_SHORT).show();
                         break;
                     case 2:
-//                        MainActivity.isLogin=true;
                         LoginUtil.isLogin=true;
-//                        Intent intent=new Intent(LoginActivity.this,Main.class);
-//                        intent.putExtra("personal","personal");
                         Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
-//                        startActivity(intent);
                         notifyLogin();
                         ShareService.notifyLoged();
                         LoginActivity.this.finish();
                         if(passWord.getText().toString()!=null) {
                             save(passWord.getText().toString());
-
                         }
                         break;
                     case 3:
@@ -90,7 +85,6 @@ public class LoginActivity extends Activity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 new Thread(){
                     @Override
                     public void run() {
@@ -99,8 +93,8 @@ public class LoginActivity extends Activity {
                         String name=null;
 
                         name=  User.login(userName.getText().toString(),passWord.getText().toString())+"";
-//                        User.login()
-//                if(userName.getText().toString().equals(userInfos.get(i).getUserName())&&
+//                      User.login()
+//                      if(userName.getText().toString().equals(userInfos.get(i).getUserName())&&
 //                            passWord.getText().toString().equals(userInfos.get(i).getUserPassWord()))
                         if(name.equals(User.LOG_FAIL))
                         {
@@ -176,7 +170,6 @@ public class LoginActivity extends Activity {
                 LoginUtil.mainActivity.sendBroadcast(intent);
             }
         });
-
     }
 
     private void setAddFriendListener()
@@ -206,7 +199,6 @@ public class LoginActivity extends Activity {
                 Intent intent=new Intent(FriendService.FRIEND_RECEIVER_ACTION);
                 intent.putExtra("control",FriendService.REQUIRE_ADD_FRIEND_REFUSED);
                 intent.putExtra("nickName",name);
-
                 LoginUtil.mainActivity.sendBroadcast(intent);
             }
         });
@@ -233,9 +225,7 @@ public class LoginActivity extends Activity {
             LoginActivity.this.finish();
             return true;
         }
-
         return super.onKeyDown(keyCode, event);
-
     }
     void save(String password){
        String key = getMd5(password);
@@ -251,8 +241,6 @@ public class LoginActivity extends Activity {
             byte [] messageByte=s.getBytes("UTF-8");
             byte [] md5Byte=messageDigest.digest(messageByte);
             str=bytestoHex(md5Byte);
-
-
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         } catch (UnsupportedEncodingException e) {
@@ -260,6 +248,7 @@ public class LoginActivity extends Activity {
         }
         return str;
     }
+
     static String bytestoHex(byte[]bytes){
         StringBuffer hexStr= new StringBuffer();
         int num;

@@ -76,7 +76,6 @@ public class Search extends AppCompatActivity {
         toolbar= (Toolbar) findViewById(R.id.toolbar2);
         toolbar.setBackgroundColor(ThemeInfo.getThemeInfo().getPrimaryColor());
         getWindow().setStatusBarColor(ThemeInfo.getThemeInfo().getStatusBarColor());
-
         editText= (EditText) findViewById(R.id.edit_text);
         imageView= (ImageView) findViewById(R.id.image);
         recyclerView= (RecyclerView) findViewById(R.id.srv);
@@ -95,13 +94,10 @@ public class Search extends AppCompatActivity {
     }
 
     private void init(){
-
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
     //    linearLayoutManager.removeAllViews();
-    //
         SearchRecyclerView searchRecyclerView=new SearchRecyclerView(movielist);
         recyclerView.setAdapter(searchRecyclerView);
 
@@ -122,7 +118,6 @@ public class Search extends AppCompatActivity {
             public void onResponse(Call call, Response response) throws IOException {
                 String responseData = response.body().string();
                 Log.e("responseDataData", responseData);
-
                 Message message=handler.obtainMessage();
                 message.obj=responseData;
                 handler.sendMessage(message);
