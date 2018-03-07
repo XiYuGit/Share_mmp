@@ -6,6 +6,7 @@ package com.our_company.xymobile.Activity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -76,6 +77,7 @@ public class LoginActivity extends Activity {
                         LoginActivity.this.finish();
                         if(passWord.getText().toString()!=null) {
                             save(passWord.getText().toString());
+
                         }
                         break;
                     case 3:
@@ -236,7 +238,11 @@ public class LoginActivity extends Activity {
 
     }
     void save(String password){
-
+       String key = getMd5(password);
+        SharedPreferences sharedPreferences= getSharedPreferences("key",MODE_PRIVATE);
+        SharedPreferences.Editor editor=sharedPreferences.edit();
+        editor.putString("key",key);
+        editor.apply();
     }
     static String getMd5(String s){
         String str="";
