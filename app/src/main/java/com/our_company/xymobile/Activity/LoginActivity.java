@@ -91,11 +91,7 @@ public class LoginActivity extends Activity {
                         super.run();
                         Message message=handler.obtainMessage();
                         String name=null;
-
                         name=  User.login(userName.getText().toString(),passWord.getText().toString())+"";
-//                      User.login()
-//                      if(userName.getText().toString().equals(userInfos.get(i).getUserName())&&
-//                            passWord.getText().toString().equals(userInfos.get(i).getUserPassWord()))
                         if(name.equals(User.LOG_FAIL))
                         {
                             message.what=1;
@@ -109,8 +105,7 @@ public class LoginActivity extends Activity {
                             return;
                         }
                         startService(new Intent(LoginActivity.this,FriendService.class));
-                       LoginUtil.currentUser=User.get();
-
+                        LoginUtil.currentUser=User.get();
                         setAddFriendListener();//设置添加朋友监听
                         setRemoteControlListener();//设置远程控制监听
                         WifiManager wifiManager= (WifiManager) getSystemService(Context.WIFI_SERVICE);
@@ -121,7 +116,6 @@ public class LoginActivity extends Activity {
                             Log.e("ip",ip);
                             User.get().setIp(ip);
                         }
-
                         message.what=2;
                         handler.sendMessage(message);
                     }
