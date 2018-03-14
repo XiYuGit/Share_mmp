@@ -62,6 +62,7 @@ public class Search extends AppCompatActivity {
             init();
         }
     };
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,10 +98,8 @@ public class Search extends AppCompatActivity {
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
-    //    linearLayoutManager.removeAllViews();
         SearchRecyclerView searchRecyclerView=new SearchRecyclerView(movielist);
         recyclerView.setAdapter(searchRecyclerView);
-
     }
 
     public void getNet(){
@@ -146,7 +145,5 @@ public class Search extends AppCompatActivity {
         }catch (JSONException e) {
             e.printStackTrace();
         }
-
     }
-
 }

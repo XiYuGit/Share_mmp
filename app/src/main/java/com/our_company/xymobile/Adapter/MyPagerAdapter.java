@@ -24,7 +24,6 @@ public class MyPagerAdapter extends FragmentPagerAdapter{
 
     @Override
     public Fragment getItem(int position) {
-
         return fragList.get(position);
     }
 

@@ -32,13 +32,11 @@ public class RecyclerviewAdapter2 extends RecyclerView.Adapter {
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, final int viewType) {
         context = parent.getContext();
         RecyclerView.ViewHolder holder = null;
-
         if (viewType == 0) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view2_2, parent, false);
             holder=new  ViewHolderHead(view);
             return holder;
         } else {
-
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view2_4, parent, false);
             holder = new ViewHolder(view);
             return holder;
@@ -69,12 +67,10 @@ public class RecyclerviewAdapter2 extends RecyclerView.Adapter {
             ((ViewHolder) holder).textViewtag1.setText(" "+Integer.parseInt(movielist.get(position * 2 ).getScore())/60+":"+Integer.parseInt(movielist.get(position * 2 ).getScore())%60);
             ((ViewHolder) holder).textViewtag2.setText(" "+Integer.parseInt(movielist.get(position * 2 +1).getScore())/60+":"+Integer.parseInt(movielist.get(position * 2 +1).getScore())%60);
 
-
             ViewHolder viewHolder = (ViewHolder) holder;
             viewHolder.cardView11.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                Toast.makeText(context, "戳到我了喵~~ ,人家的id是"+movielist.get(position*2).getId().toString()+"呢！", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(context, VideoActivity.class);
                     intent.putExtra("data", movielist.get(position * 2));
                     context.startActivity(intent);
@@ -83,7 +79,6 @@ public class RecyclerviewAdapter2 extends RecyclerView.Adapter {
             viewHolder.cardView12.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                Toast.makeText(context, "戳到我了喵~~ ,人家的id是"+movielist.get(position*2+1).getId().toString()+"呢！", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(context, VideoActivity.class);
                     intent.putExtra("data", movielist.get(position * 2 + 1));
                     context.startActivity(intent);

@@ -20,10 +20,7 @@ public class ChangeThemeAdapter extends RecyclerView.Adapter {
     private OnItemClickListener listener;
     private ArrayList<ThemeInfo>themeInfos;
 
-
-
     public ChangeThemeAdapter(ArrayList<ThemeInfo> themeInfos) {
-
         this.themeInfos = themeInfos;
     }
 
@@ -48,6 +45,7 @@ public class ChangeThemeAdapter extends RecyclerView.Adapter {
         ThemeHolder themeHolder= (ThemeHolder) holder;
         themeHolder.imageView.setColorFilter(themeInfos.get(position).getPrimaryColor());
     }
+
     public void setListener(OnItemClickListener listener) {
         this.listener = listener;
     }

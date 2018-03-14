@@ -33,14 +33,10 @@ public class RecyclerviewAdapter1_switch extends RecyclerView.Adapter {
     private List<Data> playUrl =new ArrayList<>();
     private Context context;
 
-
-
     public RecyclerviewAdapter1_switch(Bitmap[] bitmap, List<Data> hotList, List<Data> exerciseList, List<Data> petList, List<Data> cateList) {
         this.bitmaps=bitmap;
         this.datalist=hotList;
         this.playUrl=hotList;
-        Log.e("viewswitch","0");
-        Log.e("viewswitch",datalist.size()+"");
     }
 
     @Override
@@ -66,7 +62,6 @@ public class RecyclerviewAdapter1_switch extends RecyclerView.Adapter {
             Log.e("viewswitch","2");
             ((ViewHolderHead)holder).flipper.setFlipInterval(3000);
             ((ViewHolderHead)holder).flipper.startFlipping();//开始播放
-
         }else{
             Log.e("viewswitch","3");
             View view = LayoutInflater.from(context).inflate(R.layout.view1_1_switch,parent,false);
@@ -110,12 +105,9 @@ public class RecyclerviewAdapter1_switch extends RecyclerView.Adapter {
             }
             ((ViewHolderBody)holder).textViewTime .setText(time);
             ((ViewHolderBody)holder).textViewTitle.setText(datalist.get(position).getTitle());
-
         }
         Log.e("viewswitch","7");
     }
-
-
 
     @Override
     public int getItemCount() {

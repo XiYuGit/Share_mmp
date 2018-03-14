@@ -73,7 +73,6 @@ public class RecyclerviewAdapter5 extends RecyclerView.Adapter {
             viewHolder.cardView11.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                Toast.makeText(context, "戳到我了喵~~ ,人家的id是"+movielist.get(position*2).getId().toString()+"呢！", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(context, VideoActivity.class);
                     intent.putExtra("data", movielist.get(position * 2));
                     context.startActivity(intent);
@@ -82,7 +81,6 @@ public class RecyclerviewAdapter5 extends RecyclerView.Adapter {
             viewHolder.cardView12.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                Toast.makeText(context, "戳到我了喵~~ ,人家的id是"+movielist.get(position*2+1).getId().toString()+"呢！", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(context, VideoActivity.class);
                     intent.putExtra("data", movielist.get(position * 2 + 1));
                     context.startActivity(intent);

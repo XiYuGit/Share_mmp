@@ -74,7 +74,6 @@ public class RegisterActivity extends Activity {
                 {
                     return;
                 }
-
                 if(!isChinaPhoneLegal(stringUserName))
                 {
                     Toast.makeText(RegisterActivity.this, "手机号不正确！请重新输入", Toast.LENGTH_SHORT).show();
@@ -94,7 +93,6 @@ public class RegisterActivity extends Activity {
                         handler.sendMessage(message);
                     }
                 }.start();
-
             }
         });
     }

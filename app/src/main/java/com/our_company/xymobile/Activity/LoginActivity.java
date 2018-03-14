@@ -120,7 +120,6 @@ public class LoginActivity extends Activity {
                         handler.sendMessage(message);
                     }
                 }.start();
-
             }
         });
         registerButton.setOnClickListener(new View.OnClickListener() {
@@ -206,8 +205,6 @@ public class LoginActivity extends Activity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-//        Intent intent=new Intent(LoginActivity.this,MainActivity.class);
-//        startActivity(intent);
     }
 
     @Override

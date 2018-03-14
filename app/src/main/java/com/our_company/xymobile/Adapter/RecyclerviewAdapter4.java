@@ -22,7 +22,8 @@ import java.util.List;
  * Created by little star on 2017/6/15.
  */
 
-public class RecyclerviewAdapter4 extends RecyclerView.Adapter {
+public class
+RecyclerviewAdapter4 extends RecyclerView.Adapter {
     private Context context;
     private List<Data> movielist=new ArrayList<>();
     public RecyclerviewAdapter4(List<Data>movielist){
@@ -38,7 +39,6 @@ public class RecyclerviewAdapter4 extends RecyclerView.Adapter {
             holder=new RecyclerviewAdapter4.ViewHolderHead(view);
             return holder;
         } else {
-
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view2_4, parent, false);
             holder = new RecyclerviewAdapter4.ViewHolder(view);
             return holder;
@@ -73,7 +73,6 @@ public class RecyclerviewAdapter4 extends RecyclerView.Adapter {
             viewHolder.cardView11.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                Toast.makeText(context, "戳到我了喵~~ ,人家的id是"+movielist.get(position*2).getId().toString()+"呢！", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(context, VideoActivity.class);
                     intent.putExtra("data", movielist.get(position * 2));
                     context.startActivity(intent);
@@ -82,7 +81,6 @@ public class RecyclerviewAdapter4 extends RecyclerView.Adapter {
             viewHolder.cardView12.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                Toast.makeText(context, "戳到我了喵~~ ,人家的id是"+movielist.get(position*2+1).getId().toString()+"呢！", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(context, VideoActivity.class);
                     intent.putExtra("data", movielist.get(position * 2 + 1));
                     context.startActivity(intent);
