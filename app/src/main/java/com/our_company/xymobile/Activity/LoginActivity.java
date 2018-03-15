@@ -71,9 +71,10 @@ public class LoginActivity extends Activity {
                         notifyLogin();
                         ShareService.notifyLoged();
                         LoginActivity.this.finish();
-                        if(passWord.getText().toString()!=null) {
-                            save(passWord.getText().toString());
-                        }
+//                        if(passWord.getText().toString()!=null) {
+//                            save(passWord.getText().toString());
+//                        }
+
                         break;
                     case 3:
                         Toast.makeText(LoginActivity.this, "此账号已登录！", Toast.LENGTH_SHORT).show();
