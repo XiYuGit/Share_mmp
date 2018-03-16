@@ -24,11 +24,15 @@ import com.our_company.xymobile.Player.ShareService;
 import com.our_company.xymobile.R;
 import com.our_company.xymobile.Service.FriendService;
 import com.our_company.xymobile.Util.LoginUtil;
+import com.our_company.xymobile.Util.RSAUtil;
 import com.our_company.xymobile.bean.ThemeInfo;
 
 import java.io.UnsupportedEncodingException;
+import java.security.KeyPair;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.security.PrivateKey;
+import java.security.PublicKey;
 
 import xiyou.mobile.User;
 
@@ -71,9 +75,9 @@ public class LoginActivity extends Activity {
                         notifyLogin();
                         ShareService.notifyLoged();
                         LoginActivity.this.finish();
-//                        if(passWord.getText().toString()!=null) {
-//                            save(passWord.getText().toString());
-//                        }
+                        if(passWord.getText().toString()!=null) {
+                            save(passWord.getText().toString());
+                        }
 
                         break;
                     case 3:
@@ -219,13 +223,40 @@ public class LoginActivity extends Activity {
         }
         return super.onKeyDown(keyCode, event);
     }
+
     void save(String password){
-       String key = getMd5(password);
+        String key = testRSA(password);
         SharedPreferences sharedPreferences= getSharedPreferences("key",MODE_PRIVATE);
         SharedPreferences.Editor editor=sharedPreferences.edit();
         editor.putString("key",key);
         editor.apply();
     }
+
+    public String testRSA(String password) {
+        try {
+            KeyPair keyPair = RSAUtil.getKeyPair();
+            String publicKeyStr = RSAUtil.getPublicKey(keyPair);
+            String privateKeyStr = RSAUtil.getPrivateKey(keyPair);
+
+            //将Base64编码后的公钥转换成PublicKey对象
+            PublicKey publicKey = RSAUtil.string2PublicKey(publicKeyStr);
+            byte[] publicEncrypt = RSAUtil.publicEncrypt(password.getBytes(), publicKey);
+            //加密后的内容Base64编码
+            String byte2Base64 = RSAUtil.byte2Base64(publicEncrypt);
+            System.out.println("RSA公钥加密并Base64编码的结果：" + byte2Base64);
+
+            PrivateKey privateKey = null;
+            privateKey = RSAUtil.string2PrivateKey(privateKeyStr);
+            byte[] base642Byte = RSAUtil.base642Byte(byte2Base64);
+            byte[] privateDecrypt = RSAUtil.privateDecrypt(base642Byte, privateKey);
+            //解密后的明文
+            System.out.println("RSA解密后的明文: " + new String(privateDecrypt));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return password;
+    }
+
     static String getMd5(String s){
         String str="";
         try {
