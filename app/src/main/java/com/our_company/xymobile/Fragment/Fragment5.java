@@ -70,5 +70,5 @@ public class Fragment5 extends Fragment {
         recyclerView.setAdapter(recyclerviewAdapter5);
         progressBar.setVisibility(View.GONE);
     }
-    IntentService
+
 }
