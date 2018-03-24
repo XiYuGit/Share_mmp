@@ -9,7 +9,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.net.Socket;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Set;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -22,6 +25,7 @@ import okhttp3.Response;
  */
 
 public class NetExercise {
+
     private Handler handler;
     public NetExercise() {}
     public void setHandler(Handler handler) {
@@ -44,7 +48,7 @@ public class NetExercise {
             public void onResponse(Call call, Response response) throws IOException {
                 String responseData = response.body().string();
                 Log.e("responseDataData", responseData);
-
+                Object
                 Message message=handler.obtainMessage();
                 message.obj=responseData;
                 message.what=2;

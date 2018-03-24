@@ -32,6 +32,7 @@ public class NetHot {
                 .url("http://baobab.kaiyanapp.com/api/v4/discovery/hot?udid=f5e4254be4b540419cfe8bc028c09cf5a0588e41&vc=230&vn=3.14&deviceModel=FRD-AL00&first_channel=eyepetizer_zhihuiyun_market&last_channel=eyepetizer_zhihuiyun_market&system_version_code=24")
                 .build();
         Call call =okHttpClient.newCall(request);
+
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {

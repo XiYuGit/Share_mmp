@@ -1,6 +1,7 @@
 package com.our_company.xymobile;
 
 import android.Manifest;
+import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.BroadcastReceiver;
@@ -10,6 +11,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -68,7 +70,7 @@ public class Main extends AppCompatActivity   {
     private List<Fragment>fragList;
     private TabLayout tabLayout;
     private ArrayList<String>titleList;
-
+    ActivityManager
     private FragmentManager fm=getSupportFragmentManager();
     private MyPagerAdapter myPagerAdapter;
     private NavigationView navigationView;
@@ -85,7 +87,7 @@ public class Main extends AppCompatActivity   {
         public void onReceive(Context context, Intent intent) {
             int control=intent.getIntExtra("control",-1);
             MenuItem m= (MenuItem) findViewById(R.id.nav_quitButton);
-
+            Parcelable
 
             switch (control)
             {
@@ -344,6 +346,11 @@ public class Main extends AppCompatActivity   {
     private void makeToast(String message)
     {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
     }
 
     @Override
